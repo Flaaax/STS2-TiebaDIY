@@ -1,0 +1,195 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <!-- Local deployment/tool paths. -->
+    <Sts2Dir>D:\Steam\steamapps\common\Slay the Spire 2</Sts2Dir>
+    <GodotExe>C:\dev\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
+    <Sts2BinaryRoot>E:\STS\STS2\STS2 binary</Sts2BinaryRoot>
+    <JmcModLibDir>E:\STS\STS2\BuildTools\JmcModLib</JmcModLibDir>
+
+    <!-- Release x.y.z selects the matching cached game ABI. -->
+    <Sts2GameVersion Condition="'$(Sts2GameVersion)' == '' and $([System.String]::Copy('$(Configuration)').StartsWith('Release '))">$([System.String]::Copy('$(Configuration)').Substring(8))</Sts2GameVersion>
+    <Sts2GameVersion Condition="'$(Sts2GameVersion)' == ''">0.110.0</Sts2GameVersion>
+    <Sts2DataDir>$(Sts2BinaryRoot)\$(Sts2GameVersion)\data_sts2_windows_x86_64</Sts2DataDir>
+    <Sts2Version Condition="'$(Sts2Version)' == ''">$(Sts2GameVersion)</Sts2Version>
+
+    <ModDeployDir>$(Sts2Dir)\mods\$(MSBuildProjectName)</ModDeployDir>
+    <DispatchPublishDir Condition="'$(DispatchPublishDir)' == ''">$(ModDeployDir)</DispatchPublishDir>
+
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <BuildRuntimeOnly Condition="'$(BuildRuntimeOnly)' == ''">false</BuildRuntimeOnly>
+    <AssemblyName Condition="'$(BuildRuntimeOnly)' == 'true'">$(MSBuildProjectName).Runtime</AssemblyName>
+
+    <DeployMod Condition="'$(DeployMod)' == ''">false</DeployMod>
+    <CollectRuntime Condition="'$(CollectRuntime)' == ''">false</CollectRuntime>
+    <CollectModAssets Condition="'$(CollectModAssets)' == ''">false</CollectModAssets>
+    <EnableJmcDispatch Condition="'$(EnableJmcDispatch)' == ''">false</EnableJmcDispatch>
+
+    <Sts2GameVersionDefine>STS2_$([System.String]::Copy('$(Sts2GameVersion)').Replace('.', '_'))</Sts2GameVersionDefine>
+    <DefineConstants>$(DefineConstants);$(Sts2GameVersionDefine)</DefineConstants>
+
+    <Optimize Condition="$([System.String]::Copy('$(Configuration)').StartsWith('Release '))">true</Optimize>
+    <DebugType Condition="$([System.String]::Copy('$(Configuration)').StartsWith('Release '))">portable</DebugType>
+    <Configurations>Release 0.107.1;Release 0.110.0;ExportDebug;ExportRelease</Configurations>
+    <Platforms>AnyCPU</Platforms>
+
+    <JmcDispatchModName>$(MSBuildProjectName)</JmcDispatchModName>
+    <JmcDispatchPublishDir>$(DispatchPublishDir)</JmcDispatchPublishDir>
+    <JmcDispatchInitializerType>TiebaDIY.Scripts.Entry</JmcDispatchInitializerType>
+    <JmcDispatchInitializerMethod>Init</JmcDispatchInitializerMethod>
+    <JmcDispatchSetRuntimeAssemblyName>false</JmcDispatchSetRuntimeAssemblyName>
+    <JmcDispatchRuntimeAssemblyName>$(MSBuildProjectName).Runtime</JmcDispatchRuntimeAssemblyName>
+    <JmcDispatchRuntimeFileName>$(MSBuildProjectName).Runtime.dll</JmcDispatchRuntimeFileName>
+
+    <BlockBuildIfProcessRunning>SlayTheSpire2</BlockBuildIfProcessRunning>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Sts2SupportedVersion Include="0.107.1">
+      <Configuration>Release 0.107.1</Configuration>
+      <MaxGameVersionExclusive>0.108.0</MaxGameVersionExclusive>
+    </Sts2SupportedVersion>
+    <Sts2SupportedVersion Include="0.110.0">
+      <Configuration>Release 0.110.0</Configuration>
+      <MaxGameVersionExclusive>0.111.0</MaxGameVersionExclusive>
+    </Sts2SupportedVersion>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="sts2">
+      <HintPath>$(Sts2DataDir)\sts2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(Sts2DataDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Keep the RitsuLib version rules aligned with FBE. -->
+    <PackageReference Include="STS2.RitsuLib"
+                      Version="0.5.1"
+                      Condition="'$(Sts2GameVersion)' == '0.110.0'" />
+    <PackageReference Include="STS2.RitsuLib.Compat.0.107.1"
+                      Version="0.4.66"
+                      Condition="'$(Sts2GameVersion)' == '0.107.1'" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(EnableJmcDispatch)' == 'true'">
+    <JmcDispatchRuntime Include="__placeholder__" />
+  </ItemGroup>
+
+  <Target Name="CheckProcessBeforeBuild"
+          BeforeTargets="PrepareForBuild"
+          Condition="'$(DesignTimeBuild)' != 'true' and '$(IsInnerGodotExport)' != 'true'">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;if (Get-Process -Name '$(BlockBuildIfProcessRunning)' -ErrorAction SilentlyContinue) { exit 1 } else { exit 0 }&quot;"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="_ProcessCheckExitCode" />
+    </Exec>
+    <Error Condition="'$(_ProcessCheckExitCode)' != '0'"
+           Text="检测到进程 $(BlockBuildIfProcessRunning).exe 正在运行，已中止构建。请先关闭游戏后再重新 build。" />
+  </Target>
+
+  <Target Name="PrintSts2BuildContext"
+          BeforeTargets="CoreCompile"
+          Condition="'$(DesignTimeBuild)' != 'true'">
+    <Message Importance="high"
+             Text="Compiling TiebaDIY for STS2 $(Sts2GameVersion) [$(Configuration)] — define: $(Sts2GameVersionDefine)" />
+  </Target>
+
+  <Target Name="PrepareJmcDispatchRuntimeItems"
+          BeforeTargets="JmcDispatchNormalize"
+          Condition="'$(EnableJmcDispatch)' == 'true'">
+    <ItemGroup>
+      <JmcDispatchRuntime Remove="@(JmcDispatchRuntime)" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(DispatchPackageVersion)' == ''">
+      <JmcDispatchRuntime Include="%(Sts2SupportedVersion.Identity)">
+        <MinGameVersion>%(Sts2SupportedVersion.Identity)</MinGameVersion>
+        <MaxGameVersionExclusive>%(Sts2SupportedVersion.MaxGameVersionExclusive)</MaxGameVersionExclusive>
+        <RuntimeAssembly>runtimes/%(Sts2SupportedVersion.Identity)/$(MSBuildProjectName).Runtime.dll</RuntimeAssembly>
+        <ProbeDirectories>runtimes/%(Sts2SupportedVersion.Identity)</ProbeDirectories>
+        <SourcePath>$(DispatchPublishDir)\runtimes\%(Sts2SupportedVersion.Identity)\$(MSBuildProjectName).Runtime.dll</SourcePath>
+        <ProbeAllDlls>false</ProbeAllDlls>
+      </JmcDispatchRuntime>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(DispatchPackageVersion)' != ''">
+      <JmcDispatchRuntime Include="$(DispatchPackageVersion)">
+        <MinGameVersion>$(DispatchPackageVersion)</MinGameVersion>
+        <MaxGameVersionExclusive>$(DispatchPackageMaxGameVersionExclusive)</MaxGameVersionExclusive>
+        <RuntimeAssembly>runtimes/$(DispatchPackageVersion)/$(MSBuildProjectName).Runtime.dll</RuntimeAssembly>
+        <ProbeDirectories>runtimes/$(DispatchPackageVersion)</ProbeDirectories>
+        <SourcePath>$(DispatchPublishDir)\runtimes\$(DispatchPackageVersion)\$(MSBuildProjectName).Runtime.dll</SourcePath>
+        <ProbeAllDlls>false</ProbeAllDlls>
+      </JmcDispatchRuntime>
+    </ItemGroup>
+
+    <Message Text="Prepared JML Dispatch runtime entries: @(JmcDispatchRuntime)" Importance="high" />
+  </Target>
+
+  <Target Name="CollectRuntime"
+          AfterTargets="Build"
+          Condition="'$(BuildRuntimeOnly)' == 'true' and '$(CollectRuntime)' == 'true'">
+    <PropertyGroup>
+      <RuntimePublishDir>$(DispatchPublishDir)\runtimes\$(Sts2GameVersion)</RuntimePublishDir>
+    </PropertyGroup>
+    <MakeDir Directories="$(RuntimePublishDir)" />
+    <Copy SourceFiles="$(TargetPath)"
+          DestinationFiles="$(RuntimePublishDir)\$(MSBuildProjectName).Runtime.dll"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CollectModAssets"
+          AfterTargets="Build"
+          Condition="'$(IsInnerGodotExport)' != 'true' and '$(BuildRuntimeOnly)' != 'true' and '$(CollectModAssets)' == 'true'">
+    <MakeDir Directories="$(DispatchPublishDir)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\$(MSBuildProjectName).json"
+          DestinationFiles="$(DispatchPublishDir)\$(MSBuildProjectName).json"
+          SkipUnchangedFiles="true" />
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)"
+          Command="&quot;$(GodotExe)&quot; --headless --verbose --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;Windows Desktop&quot; &quot;$(DispatchPublishDir)\$(MSBuildProjectName).pck&quot;"
+          EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1" />
+  </Target>
+
+  <Target Name="CurrentVersion">
+    <ItemGroup>
+      <_CurrentSts2SupportedVersion Include="@(Sts2SupportedVersion)"
+                                    Condition="'%(Sts2SupportedVersion.Identity)' == '$(Sts2GameVersion)'" />
+    </ItemGroup>
+    <Error Condition="'@(_CurrentSts2SupportedVersion)' == ''"
+           Text="当前 Sts2GameVersion=$(Sts2GameVersion) 不在 Sts2SupportedVersion 矩阵中。" />
+    <RemoveDir Directories="$(DispatchPublishDir)\runtimes\$(Sts2GameVersion)" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="Build"
+             Properties="Configuration=$(Configuration);Sts2GameVersion=$(Sts2GameVersion);BuildRuntimeOnly=true;CollectRuntime=true;DeployMod=false;DispatchPublishDir=$(DispatchPublishDir)" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="Build"
+             Properties="Configuration=$(Configuration);Sts2GameVersion=$(Sts2GameVersion);EnableJmcDispatch=true;DeployMod=false;DispatchPackageVersion=$(Sts2GameVersion);DispatchPackageMaxGameVersionExclusive=%(_CurrentSts2SupportedVersion.MaxGameVersionExclusive);DispatchPublishDir=$(DispatchPublishDir)" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="Build"
+             Properties="Configuration=$(Configuration);Sts2GameVersion=$(Sts2GameVersion);DeployMod=false;CollectModAssets=true;DispatchPublishDir=$(DispatchPublishDir)" />
+  </Target>
+
+  <Target Name="AllVersion">
+    <RemoveDir Directories="$(DispatchPublishDir)\runtimes" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="Build"
+             Properties="Configuration=%(Sts2SupportedVersion.Configuration);BuildRuntimeOnly=true;CollectRuntime=true;DeployMod=false;DispatchPublishDir=$(DispatchPublishDir)" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="Build"
+             RemoveProperties="DispatchPackageVersion;DispatchPackageMaxGameVersionExclusive;PackageVersion"
+             Properties="Configuration=$(Configuration);EnableJmcDispatch=true;DeployMod=false;DispatchPublishDir=$(DispatchPublishDir)" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="Build"
+             Properties="Configuration=$(Configuration);DeployMod=false;CollectModAssets=true;DispatchPublishDir=$(DispatchPublishDir)" />
+  </Target>
+
+  <Import Project="$(JmcModLibDir)\JmcModLib.Dispatch.targets"
+          Condition="'$(EnableJmcDispatch)' == 'true' and Exists('$(JmcModLibDir)\JmcModLib.Dispatch.targets')" />
+</Project>

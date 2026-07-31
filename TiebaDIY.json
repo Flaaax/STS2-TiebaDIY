@@ -1,0 +1,17 @@
+{
+  "id": "TiebaDIY",
+  "name": "Tieba DIY",
+  "author": "TiebaDIY Contributors",
+  "description": "A community-created content mod for Slay the Spire 2.",
+  "version": "0.1.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    {
+      "id": "STS2-RitsuLib",
+      "min_version": "0.5.1"
+    }
+  ],
+  "min_game_version": "0.107.1",
+  "affects_gameplay": true
+}
