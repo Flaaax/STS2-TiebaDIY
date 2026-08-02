@@ -12,7 +12,7 @@ namespace TiebaDIY.Scripts.Cards;
 
 [RegisterCard(typeof(NecrobinderCardPool))]
 public sealed class TimesTwo()
-    : ModCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    : TiebaCardModel(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     private const string PortraitPath = "res://TiebaDIY/images/cards/TimesTwo.png";
 

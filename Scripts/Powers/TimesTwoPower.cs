@@ -3,22 +3,15 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
-using STS2RitsuLib.Scaffolding.Content;
 
 namespace TiebaDIY.Scripts.Powers;
 
 [RegisterPower]
-public sealed class TimesTwoPower : ModPowerTemplate
+public sealed class TimesTwoPower : TiebaPowerModel
 {
-    private const string IconPath = "res://TiebaDIY/images/powers/TimesTwoPower.png";
-
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Single;
-
-    public override PowerAssetProfile AssetProfile { get; } = new(
-        IconPath: IconPath,
-        BigIconPath: IconPath);
 
     public override decimal ModifyPowerAmountGivenAdditive(
         PowerModel power,
