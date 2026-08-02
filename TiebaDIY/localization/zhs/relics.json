@@ -1,5 +1,11 @@
 {
   "TIEBA_DIY_RELIC_BAGUETTE.title": "法棍",
   "TIEBA_DIY_RELIC_BAGUETTE.description": "每回合开始时，获得{Energy:energyIcons()}。在第[blue]3[/blue]回合失去{EnergyLoss:energyIcons()}。",
-  "TIEBA_DIY_RELIC_BAGUETTE.flavor": "[blue]这是面包的亲戚[/blue]"
+  "TIEBA_DIY_RELIC_BAGUETTE.flavor": "[blue]这是面包的亲戚[/blue]",
+  "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.title": "坏表",
+  "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.description": "当你在本回合打出的牌少于等于[blue]{CardThreshold}[/blue]张时，则在你的下个回合开始时额外抽[blue]{Cards}[/blue]张牌。",
+  "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.flavor": "即使坏掉了，它每天也能准上两次。",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.title": "未孵化的火种",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "每场战斗一次，当你死亡时，以[blue]1[/blue]点生命值复活，且本回合内你无法再死亡。",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "外壳之下，有什么正等待第一次呼吸。"
 }

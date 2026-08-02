@@ -7,6 +7,9 @@
 - RitsuLib 的本地源码位于 [`../Thirdparty Mods/STS2-RitsuLib-main/`](../Thirdparty%20Mods/STS2-RitsuLib-main/)；使用其 API 前优先查阅该目录下的 `src/` 与 `docs/`。常用入口包括 [`ModRelicTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModRelicTemplate.cs)、[`ModCardTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModCardTemplate.cs) 与 [`ModPowerTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModPowerTemplate.cs)。
 - 遵循上层工作区规则：禁止由代理执行构建。
 
+## 开发指南
+- 
+
 ## 内容制作指南
 
 ### 通用规则

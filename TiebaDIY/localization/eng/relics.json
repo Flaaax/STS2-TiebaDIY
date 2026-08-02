@@ -1,5 +1,11 @@
 {
   "TIEBA_DIY_RELIC_BAGUETTE.title": "Baguette",
   "TIEBA_DIY_RELIC_BAGUETTE.description": "At the start of each turn, gain {Energy:energyIcons()}. On turn [blue]3[/blue], then lose {EnergyLoss:energyIcons()}.",
-  "TIEBA_DIY_RELIC_BAGUETTE.flavor": "Best served warm."
+  "TIEBA_DIY_RELIC_BAGUETTE.flavor": "Best served warm.",
+  "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.title": "Broken Pocketwatch",
+  "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.description": "Whenever you play [blue]{CardThreshold}[/blue] or fewer {CardThreshold:plural:card|cards} during your turn, draw [blue]{Cards}[/blue] additional {Cards:plural:card|cards} at the start of your next turn.",
+  "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.flavor": "Even broken, it is right twice a day.",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.title": "Unhatched Ember",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "Once per combat, when you die, revive with [blue]1[/blue] HP. You cannot die for the rest of this turn.",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "Something beneath the shell is waiting to take its first breath."
 }
