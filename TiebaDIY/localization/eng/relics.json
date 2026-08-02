@@ -1,0 +1,5 @@
+{
+  "TIEBA_DIY_RELIC_BAGUETTE.title": "Baguette",
+  "TIEBA_DIY_RELIC_BAGUETTE.description": "At the start of each turn, gain {Energy:energyIcons()}. On turn [blue]3[/blue], then lose {EnergyLoss:energyIcons()}.",
+  "TIEBA_DIY_RELIC_BAGUETTE.flavor": "Best served warm."
+}

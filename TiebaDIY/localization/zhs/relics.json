@@ -1,0 +1,5 @@
+{
+  "TIEBA_DIY_RELIC_BAGUETTE.title": "法棍",
+  "TIEBA_DIY_RELIC_BAGUETTE.description": "每回合开始时，获得{Energy:energyIcons()}。在第[blue]3[/blue]回合失去{EnergyLoss:energyIcons()}。",
+  "TIEBA_DIY_RELIC_BAGUETTE.flavor": "[blue]这是面包的亲戚[/blue]"
+}
