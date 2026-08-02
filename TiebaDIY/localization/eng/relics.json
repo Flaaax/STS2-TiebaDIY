@@ -6,6 +6,12 @@
   "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.description": "Whenever you play [blue]{CardThreshold}[/blue] or fewer {CardThreshold:plural:card|cards} during your turn, draw [blue]{Cards}[/blue] additional {Cards:plural:card|cards} at the start of your next turn.",
   "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.flavor": "Even broken, it is right twice a day.",
   "TIEBA_DIY_RELIC_UNHATCHED_EMBER.title": "Unhatched Ember",
-  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "Once per combat, when you die, revive with [blue]1[/blue] HP. You cannot die for the rest of this turn.",
-  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "Something beneath the shell is waiting to take its first breath."
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "Once per combat: when you die, revive with [blue]1[/blue] HP. You cannot die for the rest of this turn.",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "Something beneath the shell is waiting to take its first breath.",
+  "TIEBA_DIY_RELIC_TECH_TEA_SET.title": "Tech Tea Set",
+  "TIEBA_DIY_RELIC_TECH_TEA_SET.description": "Whenever you enter a Rest Site, gain [blue]{ChargesGained}[/blue] charges. At the start of combat, if you have any charges, consume [blue]1[/blue] to gain {Energy:energyIcons()}.",
+  "TIEBA_DIY_RELIC_TECH_TEA_SET.flavor": "Tea, optimized.",
+  "TIEBA_DIY_RELIC_EGG_WAFFLE.title": "Egg Waffle",
+  "TIEBA_DIY_RELIC_EGG_WAFFLE.description": "[gold]Energy[/gold] remaining at the end of combat is carried into the next combat.",
+  "TIEBA_DIY_RELIC_EGG_WAFFLE.flavor": "Best served hot."
 }

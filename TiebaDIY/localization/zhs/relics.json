@@ -6,6 +6,12 @@
   "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.description": "当你在本回合打出的牌少于等于[blue]{CardThreshold}[/blue]张时，则在你的下个回合开始时额外抽[blue]{Cards}[/blue]张牌。",
   "TIEBA_DIY_RELIC_BROKEN_POCKETWATCH.flavor": "即使坏掉了，它每天也能准上两次。",
   "TIEBA_DIY_RELIC_UNHATCHED_EMBER.title": "未孵化的火种",
-  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "每场战斗一次，当你死亡时，以[blue]1[/blue]点生命值复活，且本回合内你无法再死亡。",
-  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "外壳之下，有什么正等待第一次呼吸。"
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "每场战斗一次：当你死亡时，以[blue]1[/blue]点生命值复活，且本回合内你无法再死亡。",
+  "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "俗称：火蛋",
+  "TIEBA_DIY_RELIC_TECH_TEA_SET.title": "高科技茶具套装",
+  "TIEBA_DIY_RELIC_TECH_TEA_SET.description": "战斗开始时，消耗[blue]1[/blue]计数并获得{Energy:energyIcons()}。\n每当进入休息处时，增加[blue]{ChargesGained}[/blue]计数。",
+  "TIEBA_DIY_RELIC_TECH_TEA_SET.flavor": "著名茶具套装的第67代发行版",
+  "TIEBA_DIY_RELIC_EGG_WAFFLE.title": "港式鸡蛋仔",
+  "TIEBA_DIY_RELIC_EGG_WAFFLE.description": "战斗结束时剩余的[gold]能量[/gold]可以保留到下一场战斗开始。",
+  "TIEBA_DIY_RELIC_EGG_WAFFLE.flavor": "趁热食用。"
 }

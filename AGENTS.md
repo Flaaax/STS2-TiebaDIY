@@ -8,7 +8,10 @@
 - 遵循上层工作区规则：禁止由代理执行构建。
 
 ## 开发指南
-- 
+
+- 在继承原版或 RitsuLib 类型时，不要无意间声明与基类成员同名的字段、常量、属性或方法。优先换成不会冲突的名称；
+如果确实需要隐藏基类成员，必须显式添加 `new`，避免产生 CS0108 警告。
+例如：`private new const string PortraitPath = "res://TiebaDIY/images/cards/MovingAround.png";`。
 
 ## 内容制作指南
 
@@ -18,6 +21,7 @@
 - RitsuLib 默认把公开 Entry 规范化为 `MODID_CATEGORY_TYPENAME`。例如 TiebaDIY 的 `ExampleCard` 默认为 `TIEBA_DIY_CARD_EXAMPLE_CARD`，`ExampleRelic` 默认为 `TIEBA_DIY_RELIC_EXAMPLE_RELIC`；本地化键必须以实际公开 Entry 为词干。
 - 已经发布的内容不要仅因重命名 C# 类型而改变 Entry。需要稳定命名时，在注册注解上使用 `StableEntryStem`；除非兼容既有完整 ID，不要使用 `FullPublicEntry`，两者不能同时设置。
 - 游戏内容文本使用原生本地化表。TiebaDIY 当前的目录约定为 `TiebaDIY/localization/zhs/<table>.json` 与 `TiebaDIY/localization/eng/<table>.json`，新增内容应同时提供中英文键。
+- 新增内容的英文名称应保持简短，优先使用能准确表达概念的短名称，不要把完整中文名逐词扩写成冗长英文。
 - 自定义资源放在 `TiebaDIY/images/` 等 PCK 资源目录中，代码使用 `res://TiebaDIY/...` 路径。只填写实际需要覆盖的资源，未覆盖部分保留原版行为。
 - 如果不确定某项 RitsuLib API 是否存在、在两个目标版本间是否兼容，先检查项目实际引用的包版本、本地 RitsuLib 源码及 `STS2 source/` 的 `0.107.1`、`0.110.0` 分支；无法确认时退回原版模型能力，并用 `STS2_0_107_1` / `STS2_0_110_0` 隔离 ABI 差异。
 
@@ -73,6 +77,7 @@ public override CardAssetProfile AssetProfile { get; } = new(
 - 卡牌核心行为优先使用原版 `CardModel` API：
   - 用构造参数声明基础费用、类型、稀有度与目标类型。
   - 用 `CanonicalVars` 声明 `DamageVar`、`BlockVar`、`IntVar`、`EnergyVar` 等动态变量，并在本地化描述中引用同名占位符。
+  - 只要 Canonical Var 是 `PowerVar<TPower>`，本地化占位符键就与 Power 的 C# 类名完全相同（即 `typeof(TPower).Name`），必须保留 `Power` 后缀。例如 `new PowerVar<DoomPower>(...)` 的文本占位符是 `{DoomPower}` / `{DoomPower:diff()}`，不是 `{Doom}`；即使代码中通过 `DynamicVars.Doom` 访问，也不能把代码访问名当成本地化键。
   - 用 `OnPlay(PlayerChoiceContext, CardPlay)` 实现打出效果，优先调用 `CardCmd`、`CreatureCmd`、`PowerCmd`、`PlayerCmd` 等原版命令，不直接绕过命令系统修改战斗状态。
   - 用 `OnUpgrade()` 实现升级；数值使用 `DynamicVars.<变量>.UpgradeValueBy(...)`，费用使用 `EnergyCost.UpgradeBy(...)`。
   - 原版关键词与标签分别重写 `CanonicalKeywords`、`CanonicalTags`。不要使用 RitsuLib 已标记过时的 `RegisteredKeywordIds`、`RegisteredCardTagIds`；自定义关键词或标签应先通过 RitsuLib 注册，再转换成 `CardKeyword` / `CardTag`。

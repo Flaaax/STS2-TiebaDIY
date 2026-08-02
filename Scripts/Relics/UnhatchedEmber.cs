@@ -1,9 +1,9 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -64,6 +64,12 @@ public sealed class UnhatchedEmber : TiebaRelicModel
             return amount;
 
         return Math.Min(amount, Math.Max(target.CurrentHp - 1, 0));
+    }
+
+    public override Task AfterModifyingHpLostAfterOsty()
+    {
+        Flash();
+        return Task.CompletedTask;
     }
 
     public override Task AfterSideTurnEndLate(

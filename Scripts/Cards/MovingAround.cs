@@ -13,7 +13,7 @@ namespace TiebaDIY.Scripts.Cards;
 public sealed class MovingAround()
     : TiebaCardModel(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    private const string PortraitPath = "res://TiebaDIY/images/cards/MovingAround.png";
+    private new const string PortraitPath = "res://TiebaDIY/images/cards/MovingAround.png";
 
     public override bool GainsBlock => true;
 
