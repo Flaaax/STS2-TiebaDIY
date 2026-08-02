@@ -4,13 +4,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiebaDIY", "TiebaDIY.csproj
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-	Debug|Any CPU = Debug|Any CPU
-	ExportDebug|Any CPU = ExportDebug|Any CPU
-	ExportRelease|Any CPU = ExportRelease|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release 0.107.1|Any CPU = Release 0.107.1|Any CPU
+		Release 0.110.0|Any CPU = Release 0.110.0|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.Release 0.107.1|Any CPU.ActiveCfg = Release 0.107.1|Any CPU
+		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.Release 0.107.1|Any CPU.Build.0 = Release 0.107.1|Any CPU
+		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.Release 0.110.0|Any CPU.ActiveCfg = Release 0.110.0|Any CPU
+		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.Release 0.110.0|Any CPU.Build.0 = Release 0.110.0|Any CPU
 		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
 		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{3E9A4387-16C4-4A79-9DD2-8C8ED0B5CFED}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU

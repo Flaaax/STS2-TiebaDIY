@@ -1,8 +1,8 @@
 {
   "id": "TiebaDIY",
   "name": "Tieba DIY",
-  "author": "TiebaDIY Contributors",
-  "description": "A community-created content mod for Slay the Spire 2.",
+  "author": "Flaaax",
+  "description": "DIY content collection from various sources.",
   "version": "0.1.0",
   "has_pck": true,
   "has_dll": true,

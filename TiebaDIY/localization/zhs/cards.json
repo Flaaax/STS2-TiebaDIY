@@ -1,4 +1,8 @@
 {
   "TIEBA_DIY_CARD_TIMES_TWO.title": "×2",
-  "TIEBA_DIY_CARD_TIMES_TWO.description": "获得[gold]×2[/gold]。"
+  "TIEBA_DIY_CARD_TIMES_TWO.description": "每当任意生物施加[gold]能力[/gold]时，使其附加量翻倍。",
+  "TIEBA_DIY_CARD_MOVING_AROUND.title": "动来动去",
+  "TIEBA_DIY_CARD_MOVING_AROUND.description": "获得{Block:diff()}点[gold]格挡[/gold]{Repeat:diff()}次。",
+  "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.title": "倘有明日",
+  "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.description": "给予自己{Doom:diff()}层[gold]灾厄[/gold]。\n将{Cards:diff()}张[gold]鬼火+[/gold]加入你的[gold]手牌[/gold]。\n[gold]阴世[/gold]：奥斯提死去。"
 }

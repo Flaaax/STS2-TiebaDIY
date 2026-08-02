@@ -78,8 +78,14 @@ public override CardAssetProfile AssetProfile { get; } = new(
 
 ### Power
 
-- 能力牌通常需要一个配套的 `PowerModel`。TiebaDIY 的自定义 Power 默认直接继承 RitsuLib 的 `ModPowerTemplate`；其完整类型是 `STS2RitsuLib.Scaffolding.Content.ModPowerTemplate`，本身继承原版 `MegaCrit.Sts2.Core.Models.PowerModel`。
-- Power 是独立模型，不属于池。必须在具体类型上添加 `[RegisterPower]`，然后由能力牌通过 `PowerCmd.Apply<TPower>(choiceContext, target, amount, applier, cardSource)` 施加。能力牌通常用 `PowerVar<TPower>` 保存施加量，并通过 `AdditionalHoverTips` 添加 `HoverTipFactory.FromPower<TPower>()`。
+- 能力牌通常需要一个配套的 `PowerModel`。TiebaDIY 的自定义 Power 默认直接继承 RitsuLib 的 `ModPowerTemplate`；
+其完整类型是 `STS2RitsuLib.Scaffolding.Content.ModPowerTemplate`，
+本身继承原版 `MegaCrit.Sts2.Core.Models.PowerModel`。
+- 如果一个能力基本上是一张能力牌的“转发”，那张能力牌的描述应该直接写出此能力的效果，而不是说“获得xx能力”。类似原版“DevilForm”，
+尽管它实际上给你“DevilFormPower”，但它的描述还是写“每回合获得3力量”。
+- Power 是独立模型，不属于池。必须在具体类型上添加 `[RegisterPower]`，
+然后由能力牌通过 `PowerCmd.Apply<TPower>(choiceContext, target, amount, applier, cardSource)` 施加。
+能力牌通常用 `PowerVar<TPower>` 保存施加量，并通过 `AdditionalHoverTips` 添加 `HoverTipFactory.FromPower<TPower>()`。
 - 推荐的最小结构：
 
 ```csharp

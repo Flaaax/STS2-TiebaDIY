@@ -14,7 +14,7 @@ namespace TiebaDIY.Scripts.Cards;
 public sealed class TimesTwo()
     : TiebaCardModel(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
-    private const string PortraitPath = "res://TiebaDIY/images/cards/TimesTwo.png";
+    private new const string PortraitPath = "res://TiebaDIY/images/cards/TimesTwo.png";
 
     public override CardAssetProfile AssetProfile { get; } = new(
         PortraitPath: PortraitPath);
