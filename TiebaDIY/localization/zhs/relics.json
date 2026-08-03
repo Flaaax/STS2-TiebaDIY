@@ -26,11 +26,11 @@
   "TIEBA_DIY_RELIC_GOOD_STOPWATCH.title": "好表",
   "TIEBA_DIY_RELIC_GOOD_STOPWATCH.description": "在第[blue]{Turn}[/blue]回合结束时，获得一个额外回合。",
   "TIEBA_DIY_RELIC_GOOD_STOPWATCH.flavor": "一块好表，一天能准无数次。",
-  "TIEBA_DIY_RELIC_MONSTER_ENERGY_DRINK.title": "魔爪（Monster）",
+  "TIEBA_DIY_RELIC_MONSTER_ENERGY_DRINK.title": "魔爪",
   "TIEBA_DIY_RELIC_MONSTER_ENERGY_DRINK.description": "每回合开始时，获得{Energy:energyIcons()}。在休息处[gold]休息[/gold]时，将[blue]{Cards}[/blue]张[gold]睡眠不佳[/gold]加入你的卡组。",
   "TIEBA_DIY_RELIC_MONSTER_ENERGY_DRINK.flavor": "喝完以后，更难睡着了。",
   "TIEBA_DIY_RELIC_MONSTER_ENERGY_DRINK.additionalRestSiteHealText": "将{Cards}张[gold]睡眠不佳[/gold]加入你的卡组。",
   "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.title": "机械臂底座",
-  "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.description": "每[blue]{Turns}[/blue]回合，将一张随机的升级过的[gold]能力牌[/gold]加入你的手牌。它的耗能减少[blue]1[/blue]点。（回合计数可以跨战斗）",
+  "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.description": "每[blue]{Turns}[/blue]回合，将一张随机的升级过的[gold]能力牌[/gold]加入你的手牌。它的耗能减少[blue]1[/blue]点。",
   "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.flavor": "稳固，是一切自动化的基础。"
 }

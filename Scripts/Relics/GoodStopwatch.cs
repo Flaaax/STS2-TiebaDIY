@@ -21,7 +21,7 @@ public sealed class GoodStopwatch : TiebaRelicModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(TurnVar, ExtraTurnAfterTurn),
+        new IntVar(TurnVar, ExtraTurnAfterTurn),
     ];
 
     private bool UsedThisCombat
@@ -59,10 +59,12 @@ public sealed class GoodStopwatch : TiebaRelicModel
     {
         if (participants.Contains(Owner.Creature))
         {
-            Status = !UsedThisCombat &&
-                     Owner.PlayerCombatState?.TurnNumber == DynamicVars[TurnVar].IntValue
-                ? RelicStatus.Active
-                : RelicStatus.Normal;
+            var isActivationTurn = !UsedThisCombat &&
+                                   Owner.PlayerCombatState?.TurnNumber == DynamicVars[TurnVar].IntValue;
+
+            Status = isActivationTurn ? RelicStatus.Active : RelicStatus.Normal;
+            if (isActivationTurn)
+                Flash();
         }
 
         return Task.CompletedTask;

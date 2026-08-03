@@ -44,13 +44,6 @@ public sealed class IfThereIsTomorrow()
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<DoomPower>(
-            choiceContext,
-            Owner.Creature,
-            DynamicVars.Doom.BaseValue,
-            Owner.Creature,
-            this);
-
         var wisps = new List<CardModel>();
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
         {
@@ -60,6 +53,12 @@ public sealed class IfThereIsTomorrow()
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(wisps, PileType.Hand, Owner);
+        await PowerCmd.Apply<DoomPower>(
+            choiceContext,
+            Owner.Creature,
+            DynamicVars.Doom.BaseValue,
+            Owner.Creature,
+            this);
     }
 
     public override async Task AfterCardExhausted(

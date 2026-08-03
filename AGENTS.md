@@ -27,6 +27,7 @@
 - 如果不确定某项 RitsuLib API 是否存在、在两个目标版本间是否兼容，先检查项目实际引用的包版本、本地 RitsuLib 源码及 `STS2 source/` 的 `0.107.1`、`0.110.0` 分支；无法确认时退回原版模型能力，并用 `STS2_0_107_1` / `STS2_0_110_0` 隔离 ABI 差异。
 - TiebaCardModel的可重写属性：IsImba 默认为false。如果用户提到此内容是“不平衡”，“IMBA”之类，应该重写此属性为true。
 - 所有内容必须支持联机。在联机同步问题上需谨慎。
+- 对于CanonicalVars的设置：对于一般整数变量，优先用IntVar而不是DynamicVar。
 
 ### 遗物
 

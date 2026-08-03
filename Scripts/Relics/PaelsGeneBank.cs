@@ -33,7 +33,9 @@ public sealed class PaelsGeneBank : ModRelicTemplate, ITiebaModel
         Player player,
         ICollection<RestSiteOption> options)
     {
-        if (player != Owner || player.Relics.Any(static relic => relic is PaelsGrowth))
+        if (player != Owner
+            || player.Relics.Any(static relic => relic is PaelsGrowth)
+            || !player.Deck.Cards.Any(static card => card.Enchantment is Clone))
             return false;
 
         options.Add(new CloneRestSiteOption(player));
