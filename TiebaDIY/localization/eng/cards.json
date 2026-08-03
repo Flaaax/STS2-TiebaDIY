@@ -6,5 +6,13 @@
   "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.title": "If Tomorrow Comes",
   "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.description": "Apply {Doom:diff()} [gold]Doom[/gold] to yourself.\nAdd {Cards:diff()} upgraded [gold]Wisps[/gold] to your [gold]Hand[/gold].\n[gold]Afterlife[/gold]: Osty dies.",
   "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.title": "Doomed Together",
-  "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.description": "Apply {Doom:diff()} [gold]Doom[/gold] to an enemy. Apply {SelfDoom} [gold]Doom[/gold] to yourself."
+  "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.description": "Apply {Doom:diff()} [gold]Doom[/gold] to an enemy. Apply {SelfDoom} [gold]Doom[/gold] to yourself.",
+  "TIEBA_DIY_CARD_DEJA_VU.title": "Deja Vu",
+  "TIEBA_DIY_CARD_DEJA_VU.description": "[gold]Unplayable[/gold].\nWhile this card is in your Hand, whenever you play a card, it has a [blue]{Chance}%[/blue] chance to be negated and go directly to your Discard Pile.",
+  "TIEBA_DIY_CARD_EIGHT_INCH_NAIL.title": "Eight-Inch Nail",
+  "TIEBA_DIY_CARD_EIGHT_INCH_NAIL.description": "[gold]Unplayable[/gold].\nWhenever you draw a card, add this card to your Hand.",
+  "TIEBA_DIY_CARD_IRON_WAVE_PRO.title": "Iron Wave Pro",
+  "TIEBA_DIY_CARD_IRON_WAVE_PRO.description": "Gain {Block:diff()} [gold]Block[/gold] X times. Deal {Damage:diff()} damage X times.",
+  "TIEBA_DIY_CARD_ATROCITY.title": "Atrocity",
+  "TIEBA_DIY_CARD_ATROCITY.description": "At the start of your turn, apply {AtrocityPower:diff()} [gold]Vulnerable[/gold] to ALL enemies."
 }

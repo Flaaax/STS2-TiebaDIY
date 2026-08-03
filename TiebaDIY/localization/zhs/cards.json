@@ -6,5 +6,13 @@
   "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.title": "倘有明日",
   "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.description": "将{Cards:diff()}张[gold]鬼火+[/gold]加入你的[gold]手牌[/gold]，然后给予自己{DoomPower:diff()}层[gold]灾厄[/gold]。\n\n[gold]阴世[/gold]：奥斯提死去。",
   "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.title": "共赴黄泉",
-  "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.description": "给予一名敌人{DoomPower:diff()}层[gold]灾厄[/gold]。给予自己{SelfDoom}层[gold]灾厄[/gold]。"
+  "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.description": "给予一名敌人{DoomPower:diff()}层[gold]灾厄[/gold]。给予自己{SelfDoom}层[gold]灾厄[/gold]。",
+  "TIEBA_DIY_CARD_DEJA_VU.title": "既视感",
+  "TIEBA_DIY_CARD_DEJA_VU.description": "这张牌在你的手牌中时，你打出的牌有[blue]{Chance}%[/blue]的概率失效。",
+  "TIEBA_DIY_CARD_EIGHT_INCH_NAIL.title": "八寸钉",
+  "TIEBA_DIY_CARD_EIGHT_INCH_NAIL.description": "每当你抽牌，这张牌就加入你的手牌。",
+  "TIEBA_DIY_CARD_IRON_WAVE_PRO.title": "铁斩波Pro",
+  "TIEBA_DIY_CARD_IRON_WAVE_PRO.description": "获得{Block:diff()}点[gold]格挡[/gold]X次。造成{Damage:diff()}点伤害X次。",
+  "TIEBA_DIY_CARD_ATROCITY.title": "惨绝人寰",
+  "TIEBA_DIY_CARD_ATROCITY.description": "在你的回合开始时，给予所有敌人{AtrocityPower:diff()}层[gold]易伤[/gold]。"
 }

@@ -1,4 +1,6 @@
 {
   "TIEBA_DIY_POWER_TIMES_TWO_POWER.title": "×2",
-  "TIEBA_DIY_POWER_TIMES_TWO_POWER.description": "每当任意生物施加[gold]能力[/gold]时，使其附加量翻倍。"
+  "TIEBA_DIY_POWER_TIMES_TWO_POWER.description": "每当任意生物施加[gold]能力[/gold]时，使其附加量翻倍。",
+  "TIEBA_DIY_POWER_ATROCITY_POWER.title": "惨绝人寰",
+  "TIEBA_DIY_POWER_ATROCITY_POWER.description": "在你的回合开始时，给予所有敌人{Amount}层[gold]易伤[/gold]。"
 }

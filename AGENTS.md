@@ -12,6 +12,7 @@
 - 在继承原版或 RitsuLib 类型时，不要无意间声明与基类成员同名的字段、常量、属性或方法。优先换成不会冲突的名称；
 如果确实需要隐藏基类成员，必须显式添加 `new`，避免产生 CS0108 警告。
 例如：`private new const string PortraitPath = "res://TiebaDIY/images/cards/MovingAround.png";`。
+- gitignore的默认规则是：不跟踪非文本美术素材
 
 ## 内容制作指南
 
@@ -24,6 +25,8 @@
 - 新增内容的英文名称应保持简短，优先使用能准确表达概念的短名称，不要把完整中文名逐词扩写成冗长英文。
 - 自定义资源放在 `TiebaDIY/images/` 等 PCK 资源目录中，代码使用 `res://TiebaDIY/...` 路径。只填写实际需要覆盖的资源，未覆盖部分保留原版行为。
 - 如果不确定某项 RitsuLib API 是否存在、在两个目标版本间是否兼容，先检查项目实际引用的包版本、本地 RitsuLib 源码及 `STS2 source/` 的 `0.107.1`、`0.110.0` 分支；无法确认时退回原版模型能力，并用 `STS2_0_107_1` / `STS2_0_110_0` 隔离 ABI 差异。
+- TiebaCardModel的可重写属性：IsImba 默认为false。如果用户提到此内容是“不平衡”，“IMBA”之类，应该重写此属性为true。
+- 所有内容必须支持联机。在联机同步问题上需谨慎。
 
 ### 遗物
 
@@ -83,6 +86,8 @@ public override CardAssetProfile AssetProfile { get; } = new(
   - 原版关键词与标签分别重写 `CanonicalKeywords`、`CanonicalTags`。不要使用 RitsuLib 已标记过时的 `RegisteredKeywordIds`、`RegisteredCardTagIds`；自定义关键词或标签应先通过 RitsuLib 注册，再转换成 `CardKeyword` / `CardTag`。
 - `AdditionalHoverTips`、`AssetProfile` 及手牌高亮/轮廓注册是可选便利能力。没有明确需求时不要引入材质、overlay、全局卡牌类型文本修改器或额外 UI 注册。
 - 只有多个 TiebaDIY 卡牌确实出现稳定、项目专属的重复逻辑时，才考虑新增 TiebaDIY 自己的卡牌基类；不要预先增加一层空封装。
+
+- 如果卡牌带有效果“不能被打出”，通常不需要在本地化中写出来，因为游戏会自动渲染它“无法被打出”
 
 ### Power
 

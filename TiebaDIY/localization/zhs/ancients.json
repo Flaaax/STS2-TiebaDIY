@@ -1,9 +1,6 @@
 {
   "TIEBA_DIY_EVENT_GOD_OF_DIY.title": "DIY仙人",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.epithet": "占位称号",
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.epithet": "一切DIY之神",
   "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.firstVisitEver.0-0.ancient": "这是DIY仙人的首次见面占位对白。",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-0r.ancient": "这是DIY仙人的重复见面占位对白。",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.pages.INITIAL.options.ANCHOR.title": "获得锚",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.pages.INITIAL.options.BAG_OF_PREPARATION.title": "获得准备背包",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.pages.INITIAL.options.LANTERN.title": "获得灯笼"
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-0r.ancient": "这是DIY仙人的重复见面占位对白。"
 }
