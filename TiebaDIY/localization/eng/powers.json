@@ -2,5 +2,7 @@
   "TIEBA_DIY_POWER_TIMES_TWO_POWER.title": "×2",
   "TIEBA_DIY_POWER_TIMES_TWO_POWER.description": "Whenever any creature applies a [gold]Power[/gold], double the amount applied.",
   "TIEBA_DIY_POWER_ATROCITY_POWER.title": "Atrocity",
-  "TIEBA_DIY_POWER_ATROCITY_POWER.description": "At the start of your turn, apply {Amount} [gold]Vulnerable[/gold] to ALL enemies."
+  "TIEBA_DIY_POWER_ATROCITY_POWER.description": "At the start of your turn, apply {Amount} [gold]Vulnerable[/gold] to ALL enemies.",
+  "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.title": "Wild Hunt Tracking",
+  "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.description": "Tracks a death delayed by the Wild Hunt."
 }

@@ -1,24 +1,20 @@
 # Godot 4+ specific ignores
 .godot/
-.idea/
 /android/
-bin/
-obj/
-*.pck
-runtimes/
+*.png
+*.jpg
+*.wav
+*.ogg
+*.mp3
+*.webp
+icon.svg
+icon.svg.import
+.idea/
+*.DotSettings.user
+export_credentials.cfg
+*.translation
+*.tmp
 
-# Non-text art assets (keep text-based SVG and Godot .import metadata)
-/TiebaDIY/images/**/*.png
-/TiebaDIY/images/**/*.webp
-/TiebaDIY/images/**/*.jpg
-/TiebaDIY/images/**/*.jpeg
-/TiebaDIY/images/**/*.gif
-/TiebaDIY/images/**/*.bmp
-/TiebaDIY/images/**/*.tga
-/TiebaDIY/images/**/*.tif
-/TiebaDIY/images/**/*.tiff
-/TiebaDIY/images/**/*.ico
-/TiebaDIY/images/**/*.psd
-/TiebaDIY/images/**/*.kra
-/TiebaDIY/images/**/*.xcf
-/TiebaDIY/images/**/*.aseprite
+dist/
+/bin/
+/obj/
