@@ -4,5 +4,9 @@
   "TIEBA_DIY_POWER_ATROCITY_POWER.title": "惨绝人寰",
   "TIEBA_DIY_POWER_ATROCITY_POWER.description": "在你的回合开始时，给予所有敌人{Amount}层[gold]易伤[/gold]。",
   "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.title": "狂猎追踪",
-  "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.description": "记录狂猎延迟的死亡。"
+  "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.description": "记录狂猎延迟的死亡。",
+  "TIEBA_DIY_POWER_WORLD_OF_PILLARS_POWER.title": "创柱之世",
+  "TIEBA_DIY_POWER_WORLD_OF_PILLARS_POWER.description": "你每次获得[gold]格挡[/gold]时，在你的[gold]手牌[/gold]加入{Amount}张卡牌。",
+  "TIEBA_DIY_POWER_HOT_START_POWER.title": "热启动",
+  "TIEBA_DIY_POWER_HOT_START_POWER.description": "每当你[gold]生成[/gold]一个充能球时，触发其被动能力{Amount}次。"
 }

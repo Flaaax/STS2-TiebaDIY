@@ -14,5 +14,14 @@
   "TIEBA_DIY_CARD_IRON_WAVE_PRO.title": "Iron Wave Pro",
   "TIEBA_DIY_CARD_IRON_WAVE_PRO.description": "Gain {Block:diff()} [gold]Block[/gold] X times. Deal {Damage:diff()} damage X times.",
   "TIEBA_DIY_CARD_ATROCITY.title": "Atrocity",
-  "TIEBA_DIY_CARD_ATROCITY.description": "At the start of your turn, apply {AtrocityPower:diff()} [gold]Vulnerable[/gold] to ALL enemies."
+  "TIEBA_DIY_CARD_ATROCITY.description": "At the start of your turn, apply {AtrocityPower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
+  "TIEBA_DIY_CARD_WORLD_OF_PILLARS.title": "World of Pillars",
+  "TIEBA_DIY_CARD_WORLD_OF_PILLARS.description": "Whenever you gain [gold]Block[/gold], add {Cards:diff()} cards to your [gold]Hand[/gold].",
+  "TIEBA_DIY_CARD_HOT_START.title": "Hot Start",
+  "TIEBA_DIY_CARD_HOT_START.description": "Whenever you [gold]Channel[/gold] an Orb, trigger its passive ability {HotStartPower:diff()} times.",
+  "TIEBA_DIY_CARD_ELECTRONIC_SHEEP.title": "Electronic Sheep",
+  "TIEBA_DIY_CARD_ELECTRONIC_SHEEP.description": "Randomly show up to [blue]3[/blue] cards you skipped this run. Choose [blue]1[/blue] to add to your [gold]Hand[/gold]. It's free to play this turn.",
+  "TIEBA_DIY_CARD_MURAMASA.title": "Muramasa",
+  "TIEBA_DIY_CARD_MURAMASA.description": "Deal {Damage} damage.\n[gold]Fatal[/gold]: Lose {MaxHp} Max HP.",
+  "TIEBA_DIY_CARD_MURAMASA.fatal": "[purple][jitter]Good and evil cancel out.[/jitter][/purple]"
 }

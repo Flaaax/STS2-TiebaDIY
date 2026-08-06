@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1h8n7r3l1c00"
-path="res://.godot/imported/WildHunt.png-bf0bad3cea88ad299ba0cc6ed603efa0.ctex"
+uid="uid://b26ybii7qednb"
+path="res://.godot/imported/ElectronicSheep.png-4c713967e01b4f037abd1eb15ec00e45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TiebaDIY/images/relics/WildHunt.png"
-dest_files=["res://.godot/imported/WildHunt.png-bf0bad3cea88ad299ba0cc6ed603efa0.ctex"]
+source_file="res://TiebaDIY/images/cards/ElectronicSheep.png"
+dest_files=["res://.godot/imported/ElectronicSheep.png-4c713967e01b4f037abd1eb15ec00e45.ctex"]
 
 [params]
 

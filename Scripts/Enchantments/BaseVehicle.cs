@@ -24,7 +24,7 @@ public sealed class BaseVehicle : ModEnchantmentTemplate, ITiebaModel
         PlayerChoiceContext choiceContext,
         Player player)
     {
-        if (player != Card.Owner || player.PlayerCombatState.TurnNumber > 1)
+        if (player != Card.Owner || player.PlayerCombatState!.TurnNumber > 1)
             return;
 
         Card.ExhaustOnNextPlay = true;

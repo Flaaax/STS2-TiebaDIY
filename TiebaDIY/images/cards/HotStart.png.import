@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1h8n7r3l1c00"
-path="res://.godot/imported/WildHunt.png-bf0bad3cea88ad299ba0cc6ed603efa0.ctex"
+uid="uid://bhao30kj3sqms"
+path="res://.godot/imported/HotStart.png-2c927f15eb61b98d25f59dbcfd098e7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TiebaDIY/images/relics/WildHunt.png"
-dest_files=["res://.godot/imported/WildHunt.png-bf0bad3cea88ad299ba0cc6ed603efa0.ctex"]
+source_file="res://TiebaDIY/images/cards/HotStart.png"
+dest_files=["res://.godot/imported/HotStart.png-2c927f15eb61b98d25f59dbcfd098e7f.ctex"]
 
 [params]
 

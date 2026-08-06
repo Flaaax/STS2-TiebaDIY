@@ -9,9 +9,17 @@ namespace TiebaDIY.Scripts.Keywords;
     nameof(Afterlife),
     CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.None,
     IncludeInCardHoverTip = true)]
+[RegisterOwnedCardKeyword(
+    nameof(Automatic),
+    CardDescriptionPlacement = ModKeywordCardDescriptionPlacement.BeforeCardDescription,
+    IncludeInCardHoverTip = true)]
 public sealed class TiebaKeywords
 {
     public static readonly CardKeyword Afterlife = ModContentRegistry
         .GetQualifiedKeywordId(Entry.ModId, nameof(Afterlife))
+        .GetModCardKeyword();
+
+    public static readonly CardKeyword Automatic = ModContentRegistry
+        .GetQualifiedKeywordId(Entry.ModId, nameof(Automatic))
         .GetModCardKeyword();
 }

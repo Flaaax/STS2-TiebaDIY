@@ -1,4 +1,6 @@
 {
   "TIEBA_DIY_KEYWORD_AFTERLIFE.title": "Afterlife",
-  "TIEBA_DIY_KEYWORD_AFTERLIFE.description": "When this card is Exhausted, trigger its Afterlife effect."
+  "TIEBA_DIY_KEYWORD_AFTERLIFE.description": "When this card is Exhausted, trigger its Afterlife effect.",
+  "TIEBA_DIY_KEYWORD_AUTOMATIC.title": "Automatic",
+  "TIEBA_DIY_KEYWORD_AUTOMATIC.description": "When drawn, this card is played automatically. The card determines its own target."
 }

@@ -4,5 +4,9 @@
   "TIEBA_DIY_POWER_ATROCITY_POWER.title": "Atrocity",
   "TIEBA_DIY_POWER_ATROCITY_POWER.description": "At the start of your turn, apply {Amount} [gold]Vulnerable[/gold] to ALL enemies.",
   "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.title": "Wild Hunt Tracking",
-  "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.description": "Tracks a death delayed by the Wild Hunt."
+  "TIEBA_DIY_POWER_WILD_HUNT_DELAY_POWER.description": "Tracks a death delayed by the Wild Hunt.",
+  "TIEBA_DIY_POWER_WORLD_OF_PILLARS_POWER.title": "World of Pillars",
+  "TIEBA_DIY_POWER_WORLD_OF_PILLARS_POWER.description": "Whenever you gain [gold]Block[/gold], add {Amount} cards to your [gold]Hand[/gold].",
+  "TIEBA_DIY_POWER_HOT_START_POWER.title": "Hot Start",
+  "TIEBA_DIY_POWER_HOT_START_POWER.description": "Whenever you [gold]Channel[/gold] an Orb, trigger its passive ability {Amount} times."
 }

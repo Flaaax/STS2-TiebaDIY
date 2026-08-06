@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1h8n7r3l1c00"
-path="res://.godot/imported/WildHunt.png-bf0bad3cea88ad299ba0cc6ed603efa0.ctex"
+uid="uid://1j4j56h041s4"
+path="res://.godot/imported/WorldOfPillarsPower.png-796b0556aa250c1f02311d7f88fa20cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TiebaDIY/images/relics/WildHunt.png"
-dest_files=["res://.godot/imported/WildHunt.png-bf0bad3cea88ad299ba0cc6ed603efa0.ctex"]
+source_file="res://TiebaDIY/images/powers/WorldOfPillarsPower.png"
+dest_files=["res://.godot/imported/WorldOfPillarsPower.png-796b0556aa250c1f02311d7f88fa20cf.ctex"]
 
 [params]
 
