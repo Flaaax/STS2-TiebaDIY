@@ -9,7 +9,7 @@
   "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "每场战斗一次：当你死亡时，以[blue]1[/blue]点生命值复活，且本回合内你无法再死亡。",
   "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "俗称：火蛋",
   "TIEBA_DIY_RELIC_WILD_HUNT.title": "狂猎",
-  "TIEBA_DIY_RELIC_WILD_HUNT.description": "每场战斗中，对每名其它玩家一次：当一名玩家死亡时，将其复活至最大生命，并在其下个回合结束时再次死亡。",
+  "TIEBA_DIY_RELIC_WILD_HUNT.description": "每场战斗中，对[gold]每名其它玩家[/gold]一次：当一名玩家死亡时，将其复活至[gold]最大生命[/gold]，且他在其下个回合结束时[gold]死亡[/gold]。",
   "TIEBA_DIY_RELIC_WILD_HUNT.flavor": "[purple][jitter]撕碎他们，杜拉罕啊！[/jitter][/purple]",
   "TIEBA_DIY_RELIC_TECH_TEA_SET.title": "高科技茶具套装",
   "TIEBA_DIY_RELIC_TECH_TEA_SET.description": "战斗开始时，消耗[blue]1[/blue]计数并获得{Energy:energyIcons()}。\n每当进入休息处时，增加[blue]{ChargesGained}[/blue]计数。",

@@ -26,7 +26,7 @@ public sealed class ElectronicSheep()
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var skippedCards = Owner.RunState.MapPointHistory
+        IReadOnlyList<SerializableCard> CreateLocalCandidates() => Owner.RunState.MapPointHistory
             .SelectMany(static act => act)
             .SelectMany(static mapPoint => mapPoint.PlayerStats)
             .Where(playerHistory => playerHistory.PlayerId == Owner.NetId)
@@ -35,6 +35,16 @@ public sealed class ElectronicSheep()
             .Select(static choice => choice.Card)
             .Where(IsEligibleForCombatGeneration)
             .Distinct()
+            .ToList();
+
+        // Vanilla multiplayer peers can retain different history details for another player.
+        // Use the card owner's complete history as authority before consuming shared RNG, so
+        // every peer keeps the original candidate order, random result, and RNG advancement.
+        var candidates = await ElectronicSheepCandidateSync.GetAuthoritativeCandidates(
+            choiceContext,
+            Owner,
+            CreateLocalCandidates);
+        var skippedCards = candidates
             .TakeRandom(3, Owner.RunState.Rng.CombatCardGeneration)
             .ToList();
 

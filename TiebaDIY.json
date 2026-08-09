@@ -3,7 +3,7 @@
   "name": "Tieba DIY",
   "author": "Flaaax",
   "description": "DIY content collection from various sources.",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
