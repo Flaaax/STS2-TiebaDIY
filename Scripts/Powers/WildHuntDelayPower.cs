@@ -47,7 +47,7 @@ public sealed class WildHuntDelayPower : ModPowerTemplate, ITiebaModel
             new ThrowingPlayerChoiceContext(),
             Owner,
             DoomAmount,
-            Owner,
+            Applier,
             null);
     }
 
@@ -69,6 +69,6 @@ public sealed class WildHuntDelayPower : ModPowerTemplate, ITiebaModel
     public override async Task AfterCombatEnd(MegaCrit.Sts2.Core.Rooms.CombatRoom room)
     {
         if (!Owner.IsDead)
-            await CreatureCmd.Kill(Owner, force: true);
+            await CreatureCmd.SetCurrentHp(Owner, 1m);
     }
 }

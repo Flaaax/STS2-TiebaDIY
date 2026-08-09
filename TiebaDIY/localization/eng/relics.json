@@ -9,7 +9,7 @@
   "TIEBA_DIY_RELIC_UNHATCHED_EMBER.description": "Once per combat: when you die, revive with [blue]1[/blue] HP. You cannot die for the rest of this turn.",
   "TIEBA_DIY_RELIC_UNHATCHED_EMBER.flavor": "Also known as: Fire Egg.",
   "TIEBA_DIY_RELIC_WILD_HUNT.title": "Wild Hunt",
-  "TIEBA_DIY_RELIC_WILD_HUNT.description": "Once per combat for each other player: when that player dies, revive them to full HP. They die again at the end of their next turn.",
+  "TIEBA_DIY_RELIC_WILD_HUNT.description": "Once per combat for each other player: when that player dies, immediately revive them to full HP and apply [blue]999[/blue] [gold]Doom[/gold] to them.",
   "TIEBA_DIY_RELIC_WILD_HUNT.flavor": "The horns sound across the boundary between life and death.",
   "TIEBA_DIY_RELIC_TECH_TEA_SET.title": "Tech Tea Set",
   "TIEBA_DIY_RELIC_TECH_TEA_SET.description": "At the start of combat, consume [blue]1[/blue] charge and gain {Energy:energyIcons()}.\nWhenever you enter a Rest Site, gain [blue]{ChargesGained}[/blue] charges.",
@@ -37,6 +37,6 @@
   "TIEBA_DIY_RELIC_MONSTER_ENERGY_DRINK.flavor": "Sleep is no longer part of the plan.",
   "TIEBA_DIY_RELIC_MONSTER_ENERGY_DRINK.additionalRestSiteHealText": "Add {Cards} copies of [gold]Poor Sleep[/gold] to your Deck.",
   "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.title": "Mechanical Arm Base",
-  "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.description": "Every [blue]{Turns}[/blue] turns, add a random upgraded [gold]Power[/gold] to your Hand. It costs [blue]1[/blue] less. (The turn count carries between combats.)",
+  "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.description": "Every [blue]{Turns}[/blue] turns, add a random upgraded [gold]Power[/gold] to your Hand. It can be played for free. (The turn count carries between combats.)",
   "TIEBA_DIY_RELIC_MECHANICAL_ARM_BASE.flavor": "A steady foundation for tireless machinery."
 }

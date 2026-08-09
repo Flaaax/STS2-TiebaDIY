@@ -73,7 +73,7 @@ public sealed class MechanicalArmBase : TiebaRelicModel
             return;
 
         CardCmd.Upgrade(card, CardPreviewStyle.None);
-        card.EnergyCost.AddThisCombat(-1);
+        card.SetToFreeThisCombat();
 
         Flash();
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);

@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Multiplayer;
 using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Runs;
@@ -13,7 +14,9 @@ internal static class ElectronicSheepCandidateSync
 {
     private const int MaxCandidateCount = ushort.MaxValue;
     private static readonly TimeSpan SyncTimeout = TimeSpan.FromSeconds(30);
-    private static readonly Lock Gate = new();
+    // Use an ordinary monitor object here: System.Threading.Lock's special lock
+    // statement support starts in C# 13, while TiebaDIY intentionally targets C# 12.
+    private static readonly object Gate = new();
     private static readonly Dictionary<CandidateKey, TaskCompletionSource<IReadOnlyList<SerializableCard>>> Waiters = [];
     private static readonly Dictionary<CandidateKey, IReadOnlyList<SerializableCard>> EarlyMessages = [];
 
