@@ -47,7 +47,7 @@ public sealed class HotStartPower : TiebaPowerModel
             for (var i = 0; i < Amount; i++)
             {
                 await OrbCmd.Passive(choiceContext, orb, null);
-                await Cmd.Wait(0.25f);
+                // await Cmd.Wait(0.25f);
             }
         }
         finally

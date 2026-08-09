@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Runs;
@@ -20,6 +21,11 @@ public sealed class BaseVehicle : ModRelicTemplate, ITiebaModel
 
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new CardsVar(5),
+    ];
+
     public override RelicAssetProfile AssetProfile { get; } = new(
         IconPath: RelicIconPath,
         IconOutlinePath: RelicIconPath,
@@ -27,6 +33,14 @@ public sealed class BaseVehicle : ModRelicTemplate, ITiebaModel
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         HoverTipFactory.FromEnchantment<BaseVehicleEnchantment>();
+
+    public override decimal ModifyHandDraw(Player player, decimal cardsToDraw)
+    {
+        if (player != Owner || Owner.PlayerCombatState!.TurnNumber != 1)
+            return cardsToDraw;
+
+        return cardsToDraw - DynamicVars.Cards.IntValue;
+    }
 
     public override bool TryModifyCardRewardOptionsLate(
         Player player,

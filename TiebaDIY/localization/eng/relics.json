@@ -21,7 +21,7 @@
   "TIEBA_DIY_RELIC_PAELS_GENE_BANK.description": "A random card in your card rewards is [gold]Enchanted[/gold] with [gold]Clone[/gold].",
   "TIEBA_DIY_RELIC_PAELS_GENE_BANK.flavor": "Pael grants you infinite possibilities.",
   "TIEBA_DIY_RELIC_BASE_VEHICLE.title": "Mobile Base",
-  "TIEBA_DIY_RELIC_BASE_VEHICLE.description": "A random card in your card rewards is [gold]Enchanted[/gold] with [gold]Mobile Base[/gold].",
+  "TIEBA_DIY_RELIC_BASE_VEHICLE.description": "A random card in your card rewards is [gold]Enchanted[/gold] with [gold]Mobile Base[/gold]. Draw [blue]{Cards}[/blue] fewer cards on your first turn.",
   "TIEBA_DIY_RELIC_BASE_VEHICLE.flavor": "Deployment time: zero.",
   "TIEBA_DIY_RELIC_SIERPINSKI_SPONGE.title": "Sierpinski Sponge",
   "TIEBA_DIY_RELIC_SIERPINSKI_SPONGE.description": "Whenever you obtain a non-[gold]Ancient Relic[/gold], obtain a [gold]Wax copy[/gold] of it. Every [blue]{Combats}[/blue] combats, your left-most [gold]Wax Relic[/gold] melts away.",

@@ -20,7 +20,7 @@
   "TIEBA_DIY_CARD_HOT_START.title": "热启动",
   "TIEBA_DIY_CARD_HOT_START.description": "每当你[gold]生成[/gold]一个充能球时，触发其被动能力{HotStartPower:diff()}次。",
   "TIEBA_DIY_CARD_ELECTRONIC_SHEEP.title": "电子羊",
-  "TIEBA_DIY_CARD_ELECTRONIC_SHEEP.description": "从你本局曾经跳过的[blue]3[/blue]张牌中，选择[blue]1[/blue]张加入你的[gold]手牌[/gold]。它在本回合耗能为0。",
+  "TIEBA_DIY_CARD_ELECTRONIC_SHEEP.description": "从你本局曾经跳过的[blue]3[/blue]张牌中选择[blue]1[/blue]张加入你的[gold]手牌[/gold]。这张牌在本回合可以免费打出。",
   "TIEBA_DIY_CARD_MURAMASA.title": "妖刀村正",
   "TIEBA_DIY_CARD_MURAMASA.description": "造成{Damage}点伤害。\n[gold]斩杀[/gold]时，你失去{MaxHp}点最大生命。",
   "TIEBA_DIY_CARD_MURAMASA.fatal": "[purple][jitter]善恶相抵。[/jitter][/purple]"
