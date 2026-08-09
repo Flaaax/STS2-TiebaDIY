@@ -12,7 +12,7 @@
   "TIEBA_DIY_CARD_LIGHT_COPPER.title": "Light Copper",
   "TIEBA_DIY_CARD_LIGHT_COPPER.description": "At the end of your turn, if this card is in your [gold]Hand[/gold], copy your [gold]Hand[/gold].",
   "TIEBA_DIY_CARD_TRANCE.title": "Trance",
-  "TIEBA_DIY_CARD_TRANCE.description": "When drawn, [gold]Transform[/gold] all of your Curses.",
+  "TIEBA_DIY_CARD_TRANCE.description": "When drawn, [gold]Transform[/gold] all of your Curses and Status cards.",
   "TIEBA_DIY_CARD_EIGHT_INCH_NAIL.title": "Eight-Inch Nail",
   "TIEBA_DIY_CARD_EIGHT_INCH_NAIL.description": "Whenever you draw a card, add this card to your Hand.",
   "TIEBA_DIY_CARD_IRON_WAVE_PRO.title": "Iron Wave Pro",
@@ -27,5 +27,5 @@
   "TIEBA_DIY_CARD_ELECTRONIC_SHEEP.description": "Randomly show up to [blue]3[/blue] cards you skipped this run. Choose [blue]1[/blue] to add to your [gold]Hand[/gold]. It's free to play this turn.",
   "TIEBA_DIY_CARD_MURAMASA.title": "Muramasa",
   "TIEBA_DIY_CARD_MURAMASA.description": "Deal {Damage} damage.\n[gold]Fatal[/gold]: Lose {MaxHp} Max HP.",
-  "TIEBA_DIY_CARD_MURAMASA.fatal": "[purple][jitter]Good and evil cancel out.[/jitter][/purple]"
+  "TIEBA_DIY_CARD_MURAMASA.fatal": "[purple][jitter]Law of Balance.[/jitter][/purple]"
 }

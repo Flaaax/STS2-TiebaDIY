@@ -13,7 +13,7 @@ namespace TiebaDIY.Scripts.Relics;
 public sealed class SierpinskiSponge : TiebaRelicModel
 {
     private const string CombatsVar = "Combats";
-    private const int MeltInterval = 3;
+    private const int MeltInterval = 4;
 
     private bool _isActivating;
     private int _combatsSeen;
@@ -51,7 +51,7 @@ public sealed class SierpinskiSponge : TiebaRelicModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new(CombatsVar, MeltInterval),
+        new IntVar(CombatsVar, MeltInterval),
     ];
 
     public override async Task AfterCombatEnd(CombatRoom _)
@@ -61,7 +61,7 @@ public sealed class SierpinskiSponge : TiebaRelicModel
             return;
 
         await DoActivateVisuals();
-        var waxRelic = Owner.Relics.FirstOrDefault(static relic => relic.IsWax && !relic.IsMelted);
+        var waxRelic = Owner.Relics.FirstOrDefault(static relic => relic is { IsWax: true, IsMelted: false });
         if (waxRelic == null)
             return;
 

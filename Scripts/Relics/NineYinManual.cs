@@ -2,9 +2,11 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -16,6 +18,9 @@ public sealed class NineYinManual : TiebaRelicModel
 	private const string CursesVar = "Curses";
 	private const int CardsToRemove = 6;
 	private const int CursesToAdd = 3;
+	private const int SpecialCurseChancePercent = 33;
+	private const string FbeCurseEntryPrefix = "FBE-";
+	private const string TiebaDiyCurseEntryPrefix = "TIEBA_DIY_CARD_";
 
 	public override RelicRarity Rarity => RelicRarity.Ancient;
 
@@ -40,6 +45,31 @@ public sealed class NineYinManual : TiebaRelicModel
 				await CardPileCmd.RemoveFromDeck(selectedCards);
 		}
 
+		var curses = SelectCurses();
+		if (curses.Count > 0)
+			await CardPileCmd.AddCursesToDeck(curses, Owner);
+	}
+
+	public override async Task AfterCardDrawn(
+		PlayerChoiceContext choiceContext,
+		CardModel card,
+		bool fromHandDraw)
+	{
+		if (!ReferenceEquals(card.Owner, Owner) || card.Type != CardType.Curse)
+			return;
+
+		Flash();
+		await PowerCmd.Apply<StrengthPower>(
+			choiceContext,
+			Owner.Creature,
+			1m,
+			Owner.Creature,
+			null);
+		await CardPileCmd.Draw(choiceContext, Owner);
+	}
+
+	private List<CardModel> SelectCurses()
+	{
 		var availableCurses = ModelDb.CardPool<CurseCardPool>()
 			.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
 			.Where(static card => card.CanBeGeneratedByModifiers)
@@ -47,25 +77,41 @@ public sealed class NineYinManual : TiebaRelicModel
 			.ToList();
 
 		if (availableCurses.Count == 0)
-			return;
+			return [];
 
 		List<CardModel> remainingCurses = [.. availableCurses];
-		List<CardModel> curses = [];
+		var remainingSpecialCurses = remainingCurses
+			.Where(IsFbeOrTiebaDiyCurse)
+			.ToList();
+		List<CardModel> selectedCurses = [];
 		for (var i = 0; i < DynamicVars[CursesVar].IntValue; i++)
 		{
 			if (remainingCurses.Count == 0)
-				remainingCurses.AddRange(availableCurses);
-
-			var curse = Owner.RunState.Rng.Niche.NextItem(remainingCurses);
-			if (curse is null)
 			{
-				return;
+				remainingCurses.AddRange(availableCurses);
+				remainingSpecialCurses.AddRange(availableCurses.Where(IsFbeOrTiebaDiyCurse));
 			}
 
-			curses.Add(curse);
+			var useSpecialPool = Owner.RunState.Rng.Niche.NextInt(100) < SpecialCurseChancePercent;
+			var candidates = useSpecialPool && remainingSpecialCurses.Count > 0
+				? remainingSpecialCurses
+				: remainingCurses;
+			var curse = Owner.RunState.Rng.Niche.NextItem(candidates);
+			if (curse is null)
+				break;
+
+			selectedCurses.Add(curse);
 			remainingCurses.Remove(curse);
+			remainingSpecialCurses.Remove(curse);
 		}
 
-		await CardPileCmd.AddCursesToDeck(curses, Owner);
+		return selectedCurses;
+	}
+
+	private static bool IsFbeOrTiebaDiyCurse(CardModel card)
+	{
+		var entry = card.Id.Entry;
+		return entry.StartsWith(FbeCurseEntryPrefix, StringComparison.Ordinal) ||
+		       entry.StartsWith(TiebaDiyCurseEntryPrefix, StringComparison.Ordinal);
 	}
 }

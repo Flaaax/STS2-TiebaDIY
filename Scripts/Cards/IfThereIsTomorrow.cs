@@ -31,7 +31,7 @@ public sealed class IfThereIsTomorrow()
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<DoomPower>(24m),
+        new PowerVar<DoomPower>(18m),
         new CardsVar(3),
     ];
 

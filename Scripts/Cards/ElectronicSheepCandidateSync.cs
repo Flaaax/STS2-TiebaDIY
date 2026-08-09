@@ -1,6 +1,5 @@
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Multiplayer;
 using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
@@ -18,11 +17,11 @@ internal static class ElectronicSheepCandidateSync
     // statement support starts in C# 13, while TiebaDIY intentionally targets C# 12.
     private static readonly object Gate = new();
     private static readonly Dictionary<CandidateKey, TaskCompletionSource<IReadOnlyList<SerializableCard>>> Waiters = [];
-    private static readonly Dictionary<CandidateKey, IReadOnlyList<SerializableCard>> EarlyMessages = [];
+    private static readonly Dictionary<CandidateKey, EarlyMessage> EarlyMessages = [];
 
     private static readonly RitsuLibSidecarSyncMessageDescriptor<CandidateMessage> Descriptor = new(
         ModuleId: Entry.ModId,
-        MessageKey: "electronic_sheep_candidates_v1",
+        MessageKey: "electronic_sheep_candidates_v2",
         Serialize: Serialize,
         Deserialize: Deserialize,
         Handle: Handle,
@@ -39,28 +38,41 @@ internal static class ElectronicSheepCandidateSync
     }
 
     public static async Task<IReadOnlyList<SerializableCard>> GetAuthoritativeCandidates(
-        PlayerChoiceContext choiceContext,
         Player owner,
+        uint sourceCardId,
+        int playIndex,
         Func<IReadOnlyList<SerializableCard>> createLocalCandidates)
     {
         var runManager = RunManager.Instance;
         if (runManager.NetService.Type is NetGameType.Singleplayer or NetGameType.Replay)
             return createLocalCandidates();
 
-        if (choiceContext is not GameActionPlayerChoiceContext actionContext ||
-            actionContext.Action.Id is not { } actionId)
+        // CardModel wraps the original GameActionPlayerChoiceContext in a
+        // BranchingPlayerChoiceContext before OnPlay, so the running action is the
+        // stable source of the shared action id on every peer.
+        if (runManager.ActionExecutor.CurrentlyRunningAction?.Id is not { } actionId)
         {
             throw new InvalidOperationException(
                 "Electronic Sheep requires a synchronized game action id in multiplayer.");
         }
 
-        var key = new CandidateKey(owner.NetId, actionId, owner.RunState.RunLocation);
+        var key = new CandidateKey(
+            owner.NetId,
+            actionId,
+            sourceCardId,
+            playIndex,
+            owner.RunState.RunLocation);
         var waiter = GetOrCreateWaiter(key);
 
         if (LocalContext.IsMe(owner))
         {
             var candidates = createLocalCandidates();
-            var message = new CandidateMessage(owner.NetId, actionId, candidates);
+            var message = new CandidateMessage(
+                owner.NetId,
+                actionId,
+                sourceCardId,
+                playIndex,
+                candidates);
             var sent = runManager.NetService.Type == NetGameType.Host
                 ? RitsuLibSidecarSyncMessages.Broadcast(runManager, Descriptor, message)
                 : RitsuLibSidecarSyncMessages.SendToHost(runManager, Descriptor, message);
@@ -147,7 +159,14 @@ internal static class ElectronicSheepCandidateSync
             return Task.CompletedTask;
         }
 
-        Accept(new CandidateKey(message.OwnerNetId, message.ActionId, location), message.Candidates);
+        Accept(
+            new CandidateKey(
+                message.OwnerNetId,
+                message.ActionId,
+                message.SourceCardId,
+                message.PlayIndex,
+                location),
+            message.Candidates);
         return Task.CompletedTask;
     }
 
@@ -155,14 +174,15 @@ internal static class ElectronicSheepCandidateSync
     {
         lock (Gate)
         {
+            PruneExpiredEarlyMessages();
             if (Waiters.TryGetValue(key, out var existing))
                 return existing;
 
             var waiter = new TaskCompletionSource<IReadOnlyList<SerializableCard>>(
                 TaskCreationOptions.RunContinuationsAsynchronously);
             Waiters[key] = waiter;
-            if (EarlyMessages.Remove(key, out var candidates))
-                waiter.TrySetResult(candidates);
+            if (EarlyMessages.Remove(key, out var earlyMessage))
+                waiter.TrySetResult(earlyMessage.Candidates);
             return waiter;
         }
     }
@@ -171,10 +191,23 @@ internal static class ElectronicSheepCandidateSync
     {
         lock (Gate)
         {
+            PruneExpiredEarlyMessages();
             if (Waiters.TryGetValue(key, out var waiter))
                 waiter.TrySetResult(candidates);
             else
-                EarlyMessages[key] = candidates;
+                EarlyMessages[key] = new EarlyMessage(candidates, Environment.TickCount64);
+        }
+    }
+
+    private static void PruneExpiredEarlyMessages()
+    {
+        var oldestAllowed = Environment.TickCount64 - (long)SyncTimeout.TotalMilliseconds;
+        foreach (var key in EarlyMessages
+                     .Where(pair => pair.Value.ReceivedAt < oldestAllowed)
+                     .Select(static pair => pair.Key)
+                     .ToList())
+        {
+            EarlyMessages.Remove(key);
         }
     }
 
@@ -186,6 +219,8 @@ internal static class ElectronicSheepCandidateSync
         var writer = new PacketWriter { WarnOnGrow = false };
         writer.WriteULong(message.OwnerNetId);
         writer.WriteUInt(message.ActionId);
+        writer.WriteUInt(message.SourceCardId, 16);
+        writer.WriteInt(message.PlayIndex);
         writer.WriteUInt((uint)message.Candidates.Count, 16);
         foreach (var candidate in message.Candidates)
             writer.Write(candidate);
@@ -199,17 +234,30 @@ internal static class ElectronicSheepCandidateSync
         reader.Reset([.. bytes]);
         var ownerNetId = reader.ReadULong();
         var actionId = reader.ReadUInt();
+        var sourceCardId = reader.ReadUInt(16);
+        var playIndex = reader.ReadInt();
         var count = (int)reader.ReadUInt(16);
         var candidates = new List<SerializableCard>(count);
         for (var index = 0; index < count; index++)
             candidates.Add(reader.Read<SerializableCard>());
-        return new CandidateMessage(ownerNetId, actionId, candidates);
+        return new CandidateMessage(ownerNetId, actionId, sourceCardId, playIndex, candidates);
     }
 
-    private readonly record struct CandidateKey(ulong OwnerNetId, uint ActionId, RunLocation Location);
+    private readonly record struct CandidateKey(
+        ulong OwnerNetId,
+        uint ActionId,
+        uint SourceCardId,
+        int PlayIndex,
+        RunLocation Location);
 
     private sealed record CandidateMessage(
         ulong OwnerNetId,
         uint ActionId,
+        uint SourceCardId,
+        int PlayIndex,
         IReadOnlyList<SerializableCard> Candidates);
+
+    private sealed record EarlyMessage(
+        IReadOnlyList<SerializableCard> Candidates,
+        long ReceivedAt);
 }

@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -41,8 +42,9 @@ public sealed class ElectronicSheep()
         // Use the card owner's complete history as authority before consuming shared RNG, so
         // every peer keeps the original candidate order, random result, and RNG advancement.
         var candidates = await ElectronicSheepCandidateSync.GetAuthoritativeCandidates(
-            choiceContext,
             Owner,
+            NetCombatCard.FromModel(this).CombatCardIndex,
+            cardPlay.PlayIndex,
             CreateLocalCandidates);
         var skippedCards = candidates
             .TakeRandom(3, Owner.RunState.Rng.CombatCardGeneration)
