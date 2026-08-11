@@ -32,7 +32,7 @@ public sealed class HotStart()
 	protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
 	[
 		HoverTipFactory.Static(StaticHoverTip.Channeling),
-		HoverTipFactory.FromPower<HotStartPower>(),
+		// HoverTipFactory.FromPower<HotStartPower>(),
 	];
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

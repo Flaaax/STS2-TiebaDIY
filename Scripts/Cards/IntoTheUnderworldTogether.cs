@@ -57,6 +57,6 @@ public sealed class IntoTheUnderworldTogether()
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Doom.UpgradeValueBy(6m);
+        DynamicVars.Doom.UpgradeValueBy(7m);
     }
 }

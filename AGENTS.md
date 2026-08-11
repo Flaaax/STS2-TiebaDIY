@@ -5,6 +5,15 @@
 - 项目使用 JML Dispatch 的入口 DLL + 多 Runtime DLL 分发机制；维护版本、构建或发布配置前必须阅读 `DIST.md`。
 - RitsuLib 的包版本与依赖规则应和 FBE 保持一致，除非用户明确要求升级。
 - RitsuLib 的本地源码位于 [`../Thirdparty Mods/STS2-RitsuLib-main/`](../Thirdparty%20Mods/STS2-RitsuLib-main/)；使用其 API 前优先查阅该目录下的 `src/` 与 `docs/`。常用入口包括 [`ModRelicTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModRelicTemplate.cs)、[`ModCardTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModCardTemplate.cs) 与 [`ModPowerTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModPowerTemplate.cs)。
+- Mod 自带音效优先使用 RitsuLib 的 `STS2RitsuLib.Audio.GameAudioService`，短音效的最小调用方式为：
+
+```csharp
+GameAudioService.Shared.PlayOneShot(
+    AudioSource.ResourceFile("res://TiebaDIY/audio/example.ogg"),
+    new AudioPlaybackOptions { Scope = AudioLifecycleScope.Combat });
+```
+
+  需引入 `using STS2RitsuLib.Audio;`；循环和音乐分别使用 `PlayLoop`、`PlayMusic`。
 - 遵循上层工作区规则：禁止由代理执行构建。
 
 ## 开发指南
@@ -12,7 +21,7 @@
 - 在继承原版或 RitsuLib 类型时，不要无意间声明与基类成员同名的字段、常量、属性或方法。优先换成不会冲突的名称；
 如果确实需要隐藏基类成员，必须显式添加 `new`，避免产生 CS0108 警告。
 例如：`private new const string PortraitPath = "res://TiebaDIY/images/cards/MovingAround.png";`。
-- gitignore的默认规则是：不跟踪非文本美术素材
+- gitignore的默认规则是：不跟踪非文本美术素材。
 
 ## 内容制作指南
 
@@ -97,6 +106,7 @@ public override CardAssetProfile AssetProfile { get; } = new(
 本身继承原版 `MegaCrit.Sts2.Core.Models.PowerModel`。
 - 如果一个能力基本上是一张能力牌的“转发”，那张能力牌的描述应该直接写出此能力的效果，而不是说“获得xx能力”。类似原版“DevilForm”，
 尽管它实际上给你“DevilFormPower”，但它的描述还是写“每回合获得3力量”。
+- 补充上一条：“转发能力”不应该被添加到卡牌的Hovertip中。这也是遵循原版的设计。
 - Power 是独立模型，不属于池。必须在具体类型上添加 `[RegisterPower]`，
 然后由能力牌通过 `PowerCmd.Apply<TPower>(choiceContext, target, amount, applier, cardSource)` 施加。
 能力牌通常用 `PowerVar<TPower>` 保存施加量，并通过 `AdditionalHoverTips` 添加 `HoverTipFactory.FromPower<TPower>()`。

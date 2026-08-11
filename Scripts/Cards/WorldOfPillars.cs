@@ -26,7 +26,7 @@ public sealed class WorldOfPillars()
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
-        HoverTipFactory.FromPower<WorldOfPillarsPower>(),
+	    // HoverTipFactory.FromPower<WorldOfPillarsPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

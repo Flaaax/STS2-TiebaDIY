@@ -1,6 +1,10 @@
 {
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.title": "DIY仙人",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.epithet": "一切DIY之神",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.firstVisitEver.0-0.ancient": "这是DIY仙人的首次见面占位对白。",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-0r.ancient": "这是DIY仙人的重复见面占位对白。"
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.title": "DIY仙人",
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.epithet": "一切DIY之神",
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.talk.firstVisitEver.0-0.ancient": "好好珍惜，因为这句话你再也看不到了。",
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-0r.ancient": "你一定是个很有耐心的人。毕竟，谁有空看这些对话呢。",
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-1r.ancient": "你也喜欢这些DIY吗？太好了，我们简直就是伯牙与绝弦啊！",
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-2r.ancient": "噶人们，我说：噶人们，我说：噶人们：我说：噶人们...",
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-3r.ancient": "没有你想不到，只有我做不到。",
+	"TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-4r.ancient": "点击输入文本"
 }

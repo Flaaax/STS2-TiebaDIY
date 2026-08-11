@@ -1,8 +1,12 @@
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using STS2RitsuLib.Audio;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -14,6 +18,14 @@ public sealed class DejaVu()
 {
     private const string ChanceVar = "Chance";
     private new const string PortraitPath = "res://TiebaDIY/images/cards/DejaVu.png";
+    private static readonly string[] CancelSfxPaths =
+    [
+        "res://TiebaDIY/audio/tick_dejavu_01.wav",
+        "res://TiebaDIY/audio/tick_dejavu_02.wav",
+        "res://TiebaDIY/audio/tick_dejavu_03.wav",
+        "res://TiebaDIY/audio/tick_dejavu_04.wav",
+        "res://TiebaDIY/audio/tick_dejavu_05.wav",
+    ];
 
     private CardModel? _invalidatedCard;
 
@@ -38,6 +50,15 @@ public sealed class DejaVu()
             return playCount;
 
         AssertMutable();
+
+        TalkCmd.Play(
+            new LocString("cards", $"{Id.Entry}.cancel"),
+            Owner.Creature,
+            VfxColor.Black);
+        GameAudioService.Shared.PlayOneShot(
+            AudioSource.ResourceFile(CancelSfxPaths[Random.Shared.Next(CancelSfxPaths.Length)]),
+            new AudioPlaybackOptions { Scope = AudioLifecycleScope.Combat });
+
         _invalidatedCard = null;
         return 0;
     }

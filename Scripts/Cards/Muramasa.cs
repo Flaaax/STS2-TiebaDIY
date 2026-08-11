@@ -1,14 +1,11 @@
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -36,7 +33,7 @@ public sealed class Muramasa()
 	protected override IEnumerable<DynamicVar> CanonicalVars =>
 	[
 		new DamageVar(25m, ValueProp.Move),
-		new MaxHpVar(10m),
+		new MaxHpVar(8m),
 	];
 
 	protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -84,6 +81,8 @@ public sealed class Muramasa()
 			    .SelectMany(static results => results)
 			    .Any(static result => result.WasTargetKilled))
 		{
+			await Cmd.Wait(0.25f);
+
 			TalkCmd.Play(
 				new LocString("cards", $"{Id.Entry}.fatal"),
 				Owner.Creature,
@@ -94,6 +93,8 @@ public sealed class Muramasa()
 				Owner.Creature,
 				DynamicVars.MaxHp.BaseValue,
 				isFromCard: true);
+
+			// await Cmd.Wait(0.5f);
 		}
 	}
 }
