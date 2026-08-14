@@ -36,11 +36,11 @@ public sealed class IronWavePro()
         for (var i = 0; i < repeatCount; i++)
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-#if STS2_0_107_1
+#if STS2_Stable
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(repeatCount)
             .FromCard(this);
-#elif STS2_0_110_0
+#elif STS2_Beta
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(repeatCount)
             .FromCard(this, cardPlay);

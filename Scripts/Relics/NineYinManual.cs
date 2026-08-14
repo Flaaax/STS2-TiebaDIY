@@ -19,7 +19,7 @@ public sealed class NineYinManual : TiebaRelicModel
 	private const int CardsToRemove = 6;
 	private const int CursesToAdd = 3;
 	private const int SpecialCurseChancePercent = 33;
-	private const string FbeCurseEntryPrefix = "FBE-";
+	private const string FbeCurseEntryPrefix = "FBE_CARD_";
 	private const string TiebaDiyCurseEntryPrefix = "TIEBA_DIY_CARD_";
 
 	public override RelicRarity Rarity => RelicRarity.Ancient;
@@ -39,7 +39,7 @@ public sealed class NineYinManual : TiebaRelicModel
 
 		if (selectionCount > 0)
 		{
-			var prefs = new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, selectionCount);
+			var prefs = new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 0, selectionCount);
 			var selectedCards = (await CardSelectCmd.FromDeckForRemoval(Owner, prefs)).ToList();
 			if (selectedCards.Count > 0)
 				await CardPileCmd.RemoveFromDeck(selectedCards);

@@ -33,7 +33,6 @@ public sealed class Muramasa()
 	protected override IEnumerable<DynamicVar> CanonicalVars =>
 	[
 		new DamageVar(25m, ValueProp.Move),
-		new MaxHpVar(8m),
 	];
 
 	protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -64,10 +63,10 @@ public sealed class Muramasa()
 		var shouldTriggerFatal = cardPlay.Target.Powers
 			.All(static power => power.ShouldOwnerDeathTriggerFatal());
 
-#if STS2_0_107_1
+#if STS2_Stable
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this);
-#elif STS2_0_110_0
+#elif STS2_Beta
 		var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
 			.FromCard(this, cardPlay);
 #endif
@@ -88,11 +87,17 @@ public sealed class Muramasa()
 				Owner.Creature,
 				VfxColor.Purple);
 
-			await CreatureCmd.LoseMaxHp(
-				choiceContext,
-				Owner.Creature,
-				DynamicVars.MaxHp.BaseValue,
-				isFromCard: true);
+			var curse = Owner.RunState.Rng.Niche.NextItem(
+				ModelDb.CardPool<CurseCardPool>()
+					.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
+					.Where(static card => card.CanBeGeneratedByModifiers));
+
+			if (curse is null)
+			{
+				return;
+			}
+
+			await CardPileCmd.AddCursesToDeck([curse], Owner);
 
 			// await Cmd.Wait(0.5f);
 		}

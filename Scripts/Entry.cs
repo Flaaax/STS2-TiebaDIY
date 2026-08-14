@@ -35,14 +35,14 @@ public static class Entry
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
         ElectronicSheepCandidateSync.Register();
 
-#if STS2_0_107_1
+#if STS2_Stable
         RegisterSavedPropertyModels();
 #endif
 
         Log.Info("Mod initialized!");
     }
 
-#if STS2_0_107_1
+#if STS2_Stable
     private static void RegisterSavedPropertyModels()
     {
         const BindingFlags flags =
@@ -75,7 +75,7 @@ public static class Entry
         if (assembly.GetName().Name == ModId)
             return;
 
-#if STS2_0_107_1
+#if STS2_Stable
         Action<Mod>? onModDetected = null;
         onModDetected = mod =>
         {

@@ -34,7 +34,7 @@ public sealed class Recursion()
 		await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 		var copiedOrb = (OrbModel)Owner.PlayerCombatState.OrbQueue.Orbs.Last()
 			.ClonePreservingMutability();
-		await OrbCmd.EvokeLast(choiceContext, Owner);
+		await OrbCmd.EvokeNext(choiceContext, Owner);
 		await OrbCmd.Channel(choiceContext, copiedOrb, Owner);
 	}
 

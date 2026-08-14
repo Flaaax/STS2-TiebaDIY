@@ -12,9 +12,12 @@
     <Sts2BinaryRoot>E:\STS\STS2\STS2 binary</Sts2BinaryRoot>
     <JmcModLibDir>E:\STS\STS2\BuildTools\JmcModLib</JmcModLibDir>
 
+    <Sts2LatestVersion>0.107.1</Sts2LatestVersion>
+    <Sts2BetaVersion>0.111.0</Sts2BetaVersion>
+
     <!-- Release x.y.z selects the matching cached game ABI. -->
     <Sts2GameVersion Condition="'$(Sts2GameVersion)' == '' and $([System.String]::Copy('$(Configuration)').StartsWith('Release '))">$([System.String]::Copy('$(Configuration)').Substring(8))</Sts2GameVersion>
-    <Sts2GameVersion Condition="'$(Sts2GameVersion)' == ''">0.110.0</Sts2GameVersion>
+    <Sts2GameVersion Condition="'$(Sts2GameVersion)' == ''">$(Sts2BetaVersion)</Sts2GameVersion>
     <Sts2DataDir>$(Sts2BinaryRoot)\$(Sts2GameVersion)\data_sts2_windows_x86_64</Sts2DataDir>
     <Sts2Version Condition="'$(Sts2Version)' == ''">$(Sts2GameVersion)</Sts2Version>
 
@@ -30,12 +33,13 @@
     <CollectModAssets Condition="'$(CollectModAssets)' == ''">false</CollectModAssets>
     <EnableJmcDispatch Condition="'$(EnableJmcDispatch)' == ''">false</EnableJmcDispatch>
 
-    <Sts2GameVersionDefine>STS2_$([System.String]::Copy('$(Sts2GameVersion)').Replace('.', '_'))</Sts2GameVersionDefine>
+    <Sts2GameVersionDefine Condition="'$(Sts2GameVersion)' == '$(Sts2LatestVersion)'">STS2_Stable</Sts2GameVersionDefine>
+    <Sts2GameVersionDefine Condition="'$(Sts2GameVersion)' == '$(Sts2BetaVersion)'">STS2_Beta</Sts2GameVersionDefine>
     <DefineConstants>$(DefineConstants);$(Sts2GameVersionDefine)</DefineConstants>
 
     <Optimize Condition="$([System.String]::Copy('$(Configuration)').StartsWith('Release '))">true</Optimize>
     <DebugType Condition="$([System.String]::Copy('$(Configuration)').StartsWith('Release '))">portable</DebugType>
-    <Configurations>Release 0.107.1;Release 0.110.0;ExportDebug;ExportRelease</Configurations>
+    <Configurations>Release $(Sts2LatestVersion);Release $(Sts2BetaVersion);ExportDebug;ExportRelease</Configurations>
     <Platforms>AnyCPU</Platforms>
 
     <JmcDispatchModName>$(MSBuildProjectName)</JmcDispatchModName>
@@ -50,13 +54,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Sts2SupportedVersion Include="0.107.1">
-      <Configuration>Release 0.107.1</Configuration>
+    <Sts2SupportedVersion Include="$(Sts2LatestVersion)">
+      <Configuration>Release $(Sts2LatestVersion)</Configuration>
       <MaxGameVersionExclusive>0.108.0</MaxGameVersionExclusive>
     </Sts2SupportedVersion>
-    <Sts2SupportedVersion Include="0.110.0">
-      <Configuration>Release 0.110.0</Configuration>
-      <MaxGameVersionExclusive>0.111.0</MaxGameVersionExclusive>
+    <Sts2SupportedVersion Include="$(Sts2BetaVersion)">
+      <Configuration>Release $(Sts2BetaVersion)</Configuration>
+      <MaxGameVersionExclusive>0.112.0</MaxGameVersionExclusive>
     </Sts2SupportedVersion>
   </ItemGroup>
 
@@ -72,11 +76,11 @@
 
     <!-- Keep the RitsuLib version rules aligned with FBE. -->
     <PackageReference Include="STS2.RitsuLib"
-                      Version="0.5.1"
-                      Condition="'$(Sts2GameVersion)' == '0.110.0'" />
+                      Version="0.5.12"
+                      Condition="'$(Sts2GameVersion)' == '$(Sts2BetaVersion)'" />
     <PackageReference Include="STS2.RitsuLib.Compat.0.107.1"
                       Version="0.4.66"
-                      Condition="'$(Sts2GameVersion)' == '0.107.1'" />
+                      Condition="'$(Sts2GameVersion)' == '$(Sts2LatestVersion)'" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(EnableJmcDispatch)' == 'true'">

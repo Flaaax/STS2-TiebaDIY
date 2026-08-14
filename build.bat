@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set "LATEST_VERSION=0.110.0"
+set "LATEST_VERSION=0.111.0"
 pushd "%~dp0"
 
 if "%~1"=="" goto build_latest
@@ -29,7 +29,7 @@ set "RESULT=%ERRORLEVEL%"
 goto end
 
 :help
-echo Usage: build [latest^|all^|0.107.1^|0.110.0]
+echo Usage: build [latest^|all^|0.107.1^|0.111.0]
 set "RESULT=0"
 goto end
 

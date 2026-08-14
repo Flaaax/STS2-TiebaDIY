@@ -63,7 +63,7 @@ public sealed class DejaVu()
         return 0;
     }
 
-#if STS2_0_110_0
+#if STS2_Beta
     public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
@@ -78,7 +78,7 @@ public sealed class DejaVu()
         location.position = CardPilePosition.Bottom;
         return location;
     }
-#elif STS2_0_107_1
+#elif STS2_Stable
     public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
         CardModel card,
         bool isAutoPlay,

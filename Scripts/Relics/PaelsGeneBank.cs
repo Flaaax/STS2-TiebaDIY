@@ -51,20 +51,19 @@ public sealed class PaelsGeneBank : ModRelicTemplate, ITiebaModel
             return false;
 
         var cloneEnchantment = ModelDb.Enchantment<Clone>();
-        var validRewards = cardRewards
-            .Where(reward => cloneEnchantment.CanEnchant(reward.Card))
-            .ToList();
+        var modifiedAnyReward = false;
 
-        if (validRewards.Count == 0)
-            return false;
+        foreach (var cardReward in cardRewards)
+        {
+            if (!cloneEnchantment.CanEnchant(cardReward.Card))
+                continue;
 
-        var selectedReward = Owner.RunState.Rng.Niche.NextItem(validRewards);
-        if (selectedReward == null)
-            return false;
+            var enchantedCard = Owner.RunState.CloneCard(cardReward.Card);
+            CardCmd.Enchant<Clone>(enchantedCard, 1m);
+            cardReward.ModifyCard(enchantedCard, this);
+            modifiedAnyReward = true;
+        }
 
-        var enchantedCard = Owner.RunState.CloneCard(selectedReward.Card);
-        CardCmd.Enchant<Clone>(enchantedCard, 1m);
-        selectedReward.ModifyCard(enchantedCard, this);
-        return true;
+        return modifiedAnyReward;
     }
 }

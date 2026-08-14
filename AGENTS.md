@@ -1,7 +1,7 @@
 ## 项目说明
 
 - TiebaDIY 是一个依赖 RitsuLib 的《杀戮尖塔 2》内容模组。
-- 当前直接支持的游戏版本是 `0.107.1` 与 `0.110.0`。
+- 当前直接支持的游戏版本是 `0.107.1` 与 `0.111.0`。
 - 项目使用 JML Dispatch 的入口 DLL + 多 Runtime DLL 分发机制；维护版本、构建或发布配置前必须阅读 `DIST.md`。
 - RitsuLib 的包版本与依赖规则应和 FBE 保持一致，除非用户明确要求升级。
 - RitsuLib 的本地源码位于 [`../Thirdparty Mods/STS2-RitsuLib-main/`](../Thirdparty%20Mods/STS2-RitsuLib-main/)；使用其 API 前优先查阅该目录下的 `src/` 与 `docs/`。常用入口包括 [`ModRelicTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModRelicTemplate.cs)、[`ModCardTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModCardTemplate.cs) 与 [`ModPowerTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModPowerTemplate.cs)。
@@ -33,7 +33,7 @@ GameAudioService.Shared.PlayOneShot(
 - 游戏内容文本使用原生本地化表。TiebaDIY 当前的目录约定为 `TiebaDIY/localization/zhs/<table>.json` 与 `TiebaDIY/localization/eng/<table>.json`，新增内容应同时提供中英文键。
 - 新增内容的英文名称应保持简短，优先使用能准确表达概念的短名称，不要把完整中文名逐词扩写成冗长英文。
 - 自定义资源放在 `TiebaDIY/images/` 等 PCK 资源目录中，代码使用 `res://TiebaDIY/...` 路径。只填写实际需要覆盖的资源，未覆盖部分保留原版行为。
-- 如果不确定某项 RitsuLib API 是否存在、在两个目标版本间是否兼容，先检查项目实际引用的包版本、本地 RitsuLib 源码及 `STS2 source/` 的 `0.107.1`、`0.110.0` 分支；无法确认时退回原版模型能力，并用 `STS2_0_107_1` / `STS2_0_110_0` 隔离 ABI 差异。
+- 如果不确定某项 RitsuLib API 是否存在、在两个目标版本间是否兼容，先检查项目实际引用的包版本、本地 RitsuLib 源码及 `STS2 source/` 的 `0.107.1`、`0.111.0` 分支；无法确认时退回原版模型能力，并用 `STS2_Stable` / `STS2_Beta` 隔离 ABI 差异。
 - TiebaCardModel的可重写属性：IsImba 默认为false。如果用户提到此内容是“不平衡”，“IMBA”之类，应该重写此属性为true。
 - 所有内容必须支持联机。在联机同步问题上需谨慎。
 - 对于CanonicalVars的设置：对于一般整数变量，优先用IntVar而不是DynamicVar。

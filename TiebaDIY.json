@@ -3,13 +3,13 @@
 	"name": "Tieba DIY",
 	"author": "Flaaax",
 	"description": "DIY content collection from various sources.",
-	"version": "0.2.3",
+	"version": "0.4.0",
 	"has_pck": true,
 	"has_dll": true,
 	"dependencies": [
 		{
 			"id": "STS2-RitsuLib",
-			"min_version": "0.5.1"
+			"min_version": "0.5.12"
 		}
 	],
 	"min_game_version": "0.107.1",

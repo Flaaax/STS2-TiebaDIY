@@ -43,8 +43,8 @@ public sealed class Trance()
 
         var transformations = AffectedPiles
             .SelectMany(pileType => pileType.GetPile(Owner).Cards)
-            .Where(static card =>
-                card is not Trance &&
+            .Where(card =>
+                !ReferenceEquals(card, this) &&
                 (card.Type is CardType.Curse or CardType.Status))
             .Select(static card => new CardTransformation(card))
             .ToList();

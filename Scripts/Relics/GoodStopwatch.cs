@@ -47,7 +47,7 @@ public sealed class GoodStopwatch : TiebaRelicModel
             return Task.CompletedTask;
 
         UsedThisCombat = true;
-        Status = RelicStatus.Normal;
+        Status = RelicStatus.Disabled;
         Flash();
         return Task.CompletedTask;
     }
@@ -59,11 +59,14 @@ public sealed class GoodStopwatch : TiebaRelicModel
     {
         if (participants.Contains(Owner.Creature))
         {
-            var isActivationTurn = !UsedThisCombat &&
-                                   Owner.PlayerCombatState?.TurnNumber == DynamicVars[TurnVar].IntValue;
+            var status = UsedThisCombat
+                ? RelicStatus.Disabled
+                : Owner.PlayerCombatState?.TurnNumber == DynamicVars[TurnVar].IntValue
+                    ? RelicStatus.Active
+                    : RelicStatus.Normal;
 
-            Status = isActivationTurn ? RelicStatus.Active : RelicStatus.Normal;
-            if (isActivationTurn)
+            Status = status;
+            if (status == RelicStatus.Active)
                 Flash();
         }
 
