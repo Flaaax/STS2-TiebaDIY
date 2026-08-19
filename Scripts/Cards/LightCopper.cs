@@ -1,3 +1,4 @@
+using FBECore.Scripts.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,6 +22,7 @@ public sealed class LightCopper()
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Exhaust,
+        FBECoreKeywords.OnEndOfTurnInHand
     ];
 
     public override CardAssetProfile AssetProfile { get; } = new(

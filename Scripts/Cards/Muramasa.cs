@@ -1,3 +1,4 @@
+using FBECore.Scripts.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,7 +11,6 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using TiebaDIY.Scripts.Keywords;
 
 namespace TiebaDIY.Scripts.Cards;
 
@@ -24,7 +24,7 @@ public sealed class Muramasa()
 
 	public override IEnumerable<CardKeyword> CanonicalKeywords =>
 	[
-		TiebaKeywords.Automatic,
+		FBECoreKeywords.Automatic,
 	];
 
 	public override CardAssetProfile AssetProfile { get; } = new(

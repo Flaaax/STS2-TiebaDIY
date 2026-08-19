@@ -4,7 +4,7 @@
   "TIEBA_DIY_CARD_MOVING_AROUND.title": "Moving Around",
   "TIEBA_DIY_CARD_MOVING_AROUND.description": "Gain {Block:diff()} [gold]Block[/gold] {Repeat:diff()} {Repeat:plural:time|times}.",
   "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.title": "If Tomorrow Comes",
-  "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.description": "Add {Cards:diff()} upgraded [gold]Wisps[/gold] to your [gold]Hand[/gold],\nthen apply {DoomPower:diff()} [gold]Doom[/gold] to yourself.\n[gold]Afterlife[/gold]: Osty dies.",
+  "TIEBA_DIY_CARD_IF_THERE_IS_TOMORROW.description": "Add {Cards:diff()} upgraded [gold]Wisps[/gold] to your [gold]Hand[/gold],\nthen apply {DoomPower:diff()} [gold]Doom[/gold] to yourself.\n[gold]On Exhaust[/gold]: Osty dies.",
   "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.title": "Doomed Together",
   "TIEBA_DIY_CARD_INTO_THE_UNDERWORLD_TOGETHER.description": "Apply {DoomPower:diff()} [gold]Doom[/gold] to an enemy. Apply {SelfDoom} [gold]Doom[/gold] to yourself.",
   "TIEBA_DIY_CARD_DEJA_VU.title": "Deja Vu",

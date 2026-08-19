@@ -3,10 +3,14 @@
 	"name": "Tieba DIY",
 	"author": "Flaaax",
 	"description": "DIY content collection from various sources.",
-	"version": "0.4.1",
+	"version": "0.5.0",
 	"has_pck": true,
 	"has_dll": true,
 	"dependencies": [
+		{
+			"id": "FBECore",
+			"min_version": "0.1.4"
+		},
 		{
 			"id": "STS2-RitsuLib",
 			"min_version": "0.5.12"

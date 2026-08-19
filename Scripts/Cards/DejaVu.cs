@@ -1,3 +1,4 @@
+using FBECore.Scripts.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -34,6 +35,7 @@ public sealed class DejaVu()
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Unplayable,
+        FBECoreKeywords.WhileInHand
     ];
 
     public override CardAssetProfile AssetProfile { get; } = new(

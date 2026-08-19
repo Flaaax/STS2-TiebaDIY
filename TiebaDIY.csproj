@@ -11,6 +11,7 @@
     <GodotExe>C:\dev\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
     <Sts2BinaryRoot>E:\STS\STS2\STS2 binary</Sts2BinaryRoot>
     <JmcModLibDir>E:\STS\STS2\BuildTools\JmcModLib</JmcModLibDir>
+    <FBECoreDependencyRoot Condition="'$(FBECoreDependencyRoot)' == ''">E:\STS\STS2\Dependencies\FBECore</FBECoreDependencyRoot>
 
     <Sts2LatestVersion>0.107.1</Sts2LatestVersion>
     <Sts2BetaVersion>0.111.0</Sts2BetaVersion>
@@ -19,6 +20,7 @@
     <Sts2GameVersion Condition="'$(Sts2GameVersion)' == '' and $([System.String]::Copy('$(Configuration)').StartsWith('Release '))">$([System.String]::Copy('$(Configuration)').Substring(8))</Sts2GameVersion>
     <Sts2GameVersion Condition="'$(Sts2GameVersion)' == ''">$(Sts2BetaVersion)</Sts2GameVersion>
     <Sts2DataDir>$(Sts2BinaryRoot)\$(Sts2GameVersion)\data_sts2_windows_x86_64</Sts2DataDir>
+    <FBECoreRuntimePath>$(FBECoreDependencyRoot)\runtimes\$(Sts2GameVersion)\FBECore.Runtime.dll</FBECoreRuntimePath>
     <Sts2Version Condition="'$(Sts2Version)' == ''">$(Sts2GameVersion)</Sts2Version>
 
     <ModDeployDir>$(Sts2Dir)\mods\$(MSBuildProjectName)</ModDeployDir>
@@ -73,6 +75,10 @@
       <HintPath>$(Sts2DataDir)\0Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="FBECore.Runtime">
+      <HintPath>$(FBECoreRuntimePath)</HintPath>
+      <Private>false</Private>
+    </Reference>
 
     <!-- Keep the RitsuLib version rules aligned with FBE. -->
     <PackageReference Include="STS2.RitsuLib"
@@ -86,6 +92,13 @@
   <ItemGroup Condition="'$(EnableJmcDispatch)' == 'true'">
     <JmcDispatchRuntime Include="__placeholder__" />
   </ItemGroup>
+
+  <Target Name="CheckFBECoreRuntimeReference"
+          BeforeTargets="ResolveAssemblyReferences"
+          Condition="'$(DesignTimeBuild)' != 'true'">
+    <Error Condition="!Exists('$(FBECoreRuntimePath)')"
+           Text="找不到 FBECore Runtime：$(FBECoreRuntimePath)。请先构建对应 STS2 版本的 FBECore，使其发布到 E:\STS\STS2\Dependencies\FBECore。" />
+  </Target>
 
   <Target Name="CheckProcessBeforeBuild"
           BeforeTargets="PrepareForBuild"
