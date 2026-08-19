@@ -18,7 +18,7 @@
   "TIEBA_DIY_RELIC_EGG_WAFFLE.description": "[gold]Energy[/gold] remaining at the end of combat is carried into the next combat.",
   "TIEBA_DIY_RELIC_EGG_WAFFLE.flavor": "Best served hot.",
   "TIEBA_DIY_RELIC_PAELS_GENE_BANK.title": "Pael's Gene Bank",
-  "TIEBA_DIY_RELIC_PAELS_GENE_BANK.description": "All cards in your card rewards that can be [gold]Enchanted[/gold] are [gold]Enchanted[/gold] with [gold]Clone[/gold].",
+  "TIEBA_DIY_RELIC_PAELS_GENE_BANK.description": "At the end of each combat, gain an additional card reward. Its cards are from your deck (excluding Quests), with a [blue]90%[/blue] chance to be non-Basic and non-Curse.",
   "TIEBA_DIY_RELIC_PAELS_GENE_BANK.flavor": "Pael grants you infinite possibilities.",
   "TIEBA_DIY_RELIC_BASE_VEHICLE.title": "Mobile Base",
   "TIEBA_DIY_RELIC_BASE_VEHICLE.description": "A random card in your card rewards is [gold]Enchanted[/gold] with [gold]Mobile Base[/gold]. Draw [blue]{Cards}[/blue] fewer cards on your first turn.",

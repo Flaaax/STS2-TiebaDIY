@@ -1,13 +1,11 @@
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.Entities.RestSite;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Models.RelicPools;
+using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -18,6 +16,8 @@ namespace TiebaDIY.Scripts.Relics;
 public sealed class PaelsGeneBank : ModRelicTemplate, ITiebaModel
 {
     private const string RelicIconPath = "res://TiebaDIY/images/relics/PaelsGeneBank.png";
+    private const int RewardOptionCount = 3;
+    private const float NonBasicNonCurseChance = 0.9f;
 
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
@@ -26,44 +26,64 @@ public sealed class PaelsGeneBank : ModRelicTemplate, ITiebaModel
         IconOutlinePath: RelicIconPath,
         BigIconPath: RelicIconPath);
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-        HoverTipFactory.FromEnchantment<Clone>();
-
-    public override bool TryModifyRestSiteOptions(
+    public override bool TryModifyRewards(
         Player player,
-        ICollection<RestSiteOption> options)
+        List<Reward> rewards,
+        AbstractRoom? room)
     {
-        if (player != Owner
-            || player.Relics.Any(static relic => relic is PaelsGrowth)
-            || !player.Deck.Cards.Any(static card => card.Enchantment is Clone))
+        if (player != Owner || room is not CombatRoom)
             return false;
 
-        options.Add(new CloneRestSiteOption(player));
+        var nonBasicNonCurses = new List<CardModel>();
+        var basicsOrCurses = new List<CardModel>();
+
+        foreach (var card in player.Deck.Cards)
+        {
+            if (card.Type == CardType.Quest)
+                continue;
+
+            if (card.Rarity == CardRarity.Basic || card.Type == CardType.Curse)
+                basicsOrCurses.Add(card);
+            else
+                nonBasicNonCurses.Add(card);
+        }
+
+        var rewardCards = SelectRewardCards(player, nonBasicNonCurses, basicsOrCurses);
+        if (rewardCards.Count == 0)
+            return false;
+
+        rewards.Add(new CardReward(
+            rewardCards,
+            CardCreationSource.Encounter,
+            player,
+            CardCreationOptions.ForRoom(player, room.RoomType)));
         return true;
     }
 
-    public override bool TryModifyCardRewardOptionsLate(
+    private static List<CardModel> SelectRewardCards(
         Player player,
-        List<CardCreationResult> cardRewards,
-        CardCreationOptions options)
+        List<CardModel> nonBasicNonCurses,
+        List<CardModel> basicsOrCurses)
     {
-        if (player != Owner)
-            return false;
+        var selectedCards = new List<CardModel>(RewardOptionCount);
+        var rng = player.PlayerRng.Rewards;
 
-        var cloneEnchantment = ModelDb.Enchantment<Clone>();
-        var modifiedAnyReward = false;
-
-        foreach (var cardReward in cardRewards)
+        while (selectedCards.Count < RewardOptionCount
+               && (nonBasicNonCurses.Count > 0 || basicsOrCurses.Count > 0))
         {
-            if (!cloneEnchantment.CanEnchant(cardReward.Card))
-                continue;
+            var preferredCards = rng.NextFloat() < NonBasicNonCurseChance
+                ? nonBasicNonCurses
+                : basicsOrCurses;
+            var fallbackCards = preferredCards == nonBasicNonCurses
+                ? basicsOrCurses
+                : nonBasicNonCurses;
+            var sourceCards = preferredCards.Count > 0 ? preferredCards : fallbackCards;
 
-            var enchantedCard = Owner.RunState.CloneCard(cardReward.Card);
-            CardCmd.Enchant<Clone>(enchantedCard, 1m);
-            cardReward.ModifyCard(enchantedCard, this);
-            modifiedAnyReward = true;
+            var selectedIndex = rng.NextInt(sourceCards.Count);
+            selectedCards.Add(player.RunState.CloneCard(sourceCards[selectedIndex]));
+            sourceCards.RemoveAt(selectedIndex);
         }
 
-        return modifiedAnyReward;
+        return selectedCards;
     }
 }

@@ -18,7 +18,7 @@
   "TIEBA_DIY_RELIC_EGG_WAFFLE.description": "战斗结束时剩余的[gold]能量[/gold]可以保留到下一场战斗开始。",
   "TIEBA_DIY_RELIC_EGG_WAFFLE.flavor": "和冰淇凌搭配，纵享美味。",
   "TIEBA_DIY_RELIC_PAELS_GENE_BANK.title": "佩尔的基因库",
-  "TIEBA_DIY_RELIC_PAELS_GENE_BANK.description": "你的所有卡牌奖励会被附魔：[purple]克隆[/purple]。",
+  "TIEBA_DIY_RELIC_PAELS_GENE_BANK.description": "每场战斗结束时，额外获得一次卡牌奖励。奖励中的牌来自你的卡组（不包含任务），其中[blue]90%[/blue]为非基础、非诅咒牌。",
   "TIEBA_DIY_RELIC_PAELS_GENE_BANK.flavor": "佩尔给予你无限的可能性。",
   "TIEBA_DIY_RELIC_BASE_VEHICLE.title": "基地车",
   "TIEBA_DIY_RELIC_BASE_VEHICLE.description": "你的卡牌奖励中的随机牌会被[gold]附魔[/gold]：[purple]基地车[/purple]。\n你的第一回合少抽[blue]{Cards}[/blue]张牌。",
