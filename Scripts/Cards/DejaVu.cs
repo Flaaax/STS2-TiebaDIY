@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
-using STS2RitsuLib.Audio;
+using FBECore.Audio;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -57,9 +57,7 @@ public sealed class DejaVu()
             new LocString("cards", $"{Id.Entry}.cancel"),
             Owner.Creature,
             VfxColor.Black);
-        GameAudioService.Shared.PlayOneShot(
-            AudioSource.ResourceFile(CancelSfxPaths[Random.Shared.Next(CancelSfxPaths.Length)]),
-            new AudioPlaybackOptions { Scope = AudioLifecycleScope.Combat });
+        FbeAudio.PlayRandom(CancelSfxPaths);
 
         _invalidatedCard = null;
         return 0;

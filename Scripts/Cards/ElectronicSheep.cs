@@ -1,10 +1,14 @@
+using FBECore.Scripts.Multiplayer;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Multiplayer.Game;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -41,10 +45,25 @@ public sealed class ElectronicSheep()
         // Vanilla multiplayer peers can retain different history details for another player.
         // Use the card owner's complete history as authority before consuming shared RNG, so
         // every peer keeps the original candidate order, random result, and RNG advancement.
-        var candidates = await ElectronicSheepCandidateSync.GetAuthoritativeCandidates(
-            Owner,
+        var runManager = RunManager.Instance;
+        var actionId = runManager.ActionExecutor.CurrentlyRunningAction?.Id;
+        if (runManager.NetService.Type is not NetGameType.Singleplayer and not NetGameType.Replay &&
+            actionId is null)
+        {
+            throw new InvalidOperationException(
+                "Electronic Sheep requires a synchronized game action id in multiplayer.");
+        }
+
+        var key = new CardCandidateSyncKey(
+            "TiebaDIY.ElectronicSheep.v1",
+            Owner.NetId,
+            actionId ?? 0,
             NetCombatCard.FromModel(this).CombatCardIndex,
             cardPlay.PlayIndex,
+            Owner.RunState.RunLocation);
+        var candidates = await AuthoritativeCardCandidateSync.GetCandidates(
+            CardCandidateAuthority.Owner,
+            key,
             CreateLocalCandidates);
         var skippedCards = candidates
             .TakeRandom(3, Owner.RunState.Rng.CombatCardGeneration)

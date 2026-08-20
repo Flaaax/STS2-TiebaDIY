@@ -16,6 +16,8 @@
 	"TIEBA_DIY_CARD_TRANCE.description": "[gold]抽到时[/gold]，[gold]变化[/gold]除自身外的所有诅咒和状态。",
 	"TIEBA_DIY_CARD_EIGHT_INCH_NAIL.title": "八寸钉",
 	"TIEBA_DIY_CARD_EIGHT_INCH_NAIL.description": "每当你抽牌，这张牌就加入你的手牌。",
+	"TIEBA_DIY_CARD_ORAL_FIBROSIS.title": "口腔纤维化",
+	"TIEBA_DIY_CARD_ORAL_FIBROSIS.description": "[gold]在手时[/gold]，你无法打出耗能为{EnergyThreshold:energyIcons()}或以上的牌。",
 	"TIEBA_DIY_CARD_IRON_WAVE_PRO.title": "铁斩波Pro",
 	"TIEBA_DIY_CARD_IRON_WAVE_PRO.description": "获得{Block:diff()}点[gold]格挡[/gold]X次。\n造成{Damage:diff()}点伤害X次。",
 	"TIEBA_DIY_CARD_ATROCITY.title": "惨绝人寰",

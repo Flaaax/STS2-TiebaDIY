@@ -43,6 +43,7 @@ public sealed class GodOfDIY : ModAncientEventTemplate, ITiebaModel
 				CreateModRelicOption<NineYinManual>(),
 				CreateModRelicOption<PaelsGeneBank>(),
 				CreateModRelicOption<BaseVehicle>(),
+				CreateModRelicOption<PremiumBigFruit>(),
 				CreateModRelicOption<MonsterEnergyDrink>(),
 				CreateModRelicOption<MechanicalArmBase>()
 			];

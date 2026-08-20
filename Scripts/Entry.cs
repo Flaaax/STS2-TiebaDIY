@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib;
 using STS2RitsuLib.Interop;
-using TiebaDIY.Scripts.Cards;
 
 namespace TiebaDIY.Scripts;
 
@@ -33,8 +32,6 @@ public static class Entry
 
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Log);
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
-        ElectronicSheepCandidateSync.Register();
-
 #if STS2_Stable
         RegisterSavedPropertyModels();
 #endif

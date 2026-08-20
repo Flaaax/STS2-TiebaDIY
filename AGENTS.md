@@ -5,15 +5,13 @@
 - 项目使用 JML Dispatch 的入口 DLL + 多 Runtime DLL 分发机制；维护版本、构建或发布配置前必须阅读 `DIST.md`。
 - RitsuLib 的包版本与依赖规则应和 FBE 保持一致，除非用户明确要求升级。
 - RitsuLib 的本地源码位于 [`../Thirdparty Mods/STS2-RitsuLib-main/`](../Thirdparty%20Mods/STS2-RitsuLib-main/)；使用其 API 前优先查阅该目录下的 `src/` 与 `docs/`。常用入口包括 [`ModRelicTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModRelicTemplate.cs)、[`ModCardTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModCardTemplate.cs) 与 [`ModPowerTemplate`](../Thirdparty%20Mods/STS2-RitsuLib-main/src/Scaffolding/Content/ModPowerTemplate.cs)。
-- Mod 自带音效优先使用 RitsuLib 的 `STS2RitsuLib.Audio.GameAudioService`，短音效的最小调用方式为：
+- Mod 自带的已导入 Godot 音频优先使用 FBECore 的 `FBECore.Audio.FbeAudio`，短音效的最小调用方式为：
 
 ```csharp
-GameAudioService.Shared.PlayOneShot(
-    AudioSource.ResourceFile("res://TiebaDIY/audio/example.ogg"),
-    new AudioPlaybackOptions { Scope = AudioLifecycleScope.Combat });
+FbeAudio.PlayOneShot("res://TiebaDIY/audio/example.ogg");
 ```
 
-  需引入 `using STS2RitsuLib.Audio;`；循环和音乐分别使用 `PlayLoop`、`PlayMusic`。
+  需引入 `using FBECore.Audio;`；循环使用 `PlayLoop` 并保存返回的 `AudioLoopHandle`。该接口走 Godot `AudioStreamPlayer` 的 `SFX` 总线；FMOD event、bank 或音乐仍按 RitsuLib 的专用 API 处理。
 - 遵循上层工作区规则：禁止由代理执行构建。
 
 ## 开发指南
@@ -58,6 +56,7 @@ public sealed class ExampleRelic : ModRelicTemplate
 - 可以使用已经从 RitsuLib 源码确认的模板能力：`AssetProfile`、`CustomIconPath`、`CustomIconOutlinePath`、`CustomBigIconPath`、`RegisteredKeywordIds`、`AdditionalHoverTips` 和 `IncludeEnergyHoverTip`。
 - 不要为了使用模板而强行依赖上述便利功能。遗物的费用、稀有度、触发时机、战斗逻辑、存档状态等核心行为，优先按照对应游戏版本的原版 `RelicModel` API 实现。
 - 只有多个 TiebaDIY 遗物确实出现稳定、项目专属的重复逻辑时，才考虑新增 TiebaDIY 自己的遗物基类；不要预先增加一层空封装。
+- 如果这个卡牌涉及到一些特定的牌，比如将一张特定的牌加入玩家的卡组，需要显示它们的HoverTip。
 
 ### 卡牌
 
