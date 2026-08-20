@@ -1,6 +1,10 @@
 {
   "TIEBA_DIY_EVENT_GOD_OF_DIY.title": "God of DIY",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.epithet": "God of All Things DIY",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.firstVisitEver.0-0.ancient": "This is the God of DIY's placeholder first-visit dialogue.",
-  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-0r.ancient": "This is the God of DIY's placeholder repeat-visit dialogue."
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.epithet": "God of All DIY",
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.firstVisitEver.0-0.ancient": "Treasure this well, for you will never see this line again.",
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.0-0r.ancient": "You must be a very patient person. After all, who has time to read all this dialogue?",
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.1-0r.ancient": "You like these DIYs too? Great, we're kindred spirits!",
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.2-0r.ancient": "Folks, I say: folks, I say: folks: I say: folks...",
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.3-0r.ancient": "Nothing is beyond your imagination—only beyond my ability.",
+  "TIEBA_DIY_EVENT_GOD_OF_DIY.talk.ANY.4-0r.ancient": "Click to enter text"
 }

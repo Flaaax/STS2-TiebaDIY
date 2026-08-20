@@ -27,7 +27,7 @@ public sealed class TimesTwo()
 
 	protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
 	[
-		HoverTipFactory.FromPower<TimesTwoPower>(),
+		//HoverTipFactory.FromPower<TimesTwoPower>(),
 	];
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
