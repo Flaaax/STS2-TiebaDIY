@@ -14,7 +14,7 @@ namespace TiebaDIY.Scripts.Relics;
 public sealed class SierpinskiSponge : TiebaRelicModel
 {
     private const string CombatsVar = "Combats";
-    private const int MeltInterval = 2;
+    private const int MeltInterval = 3;
 
     private bool _isActivating;
     private int _combatsSeen;

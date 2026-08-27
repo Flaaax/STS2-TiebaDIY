@@ -8,8 +8,7 @@
 遗物（14）法棍、坏表、未孵化的火种、狂猎、高科技茶具套装、港式鸡蛋仔、
 佩尔的基因库、基地车、精品大果、谢尔宾斯基海绵、
 九阴真经、好表、魔爪、机械臂底座。
-能力（5）×2、惨绝人寰、狂猎追踪、创柱之世、热启动。
-附魔（1）基地车。
+能力（4）×2、惨绝人寰、创柱之世、热启动。
 先古之民（1）DIY仙人。
 
 ## English
@@ -20,6 +19,6 @@ Atrocity, Creation of Pillar, Hot Start, Electronic Sheep, Muramasa, Recursion.
 Relics (14) Baguette, Broken Pocketwatch, Unhatched Ember, Wild Hunt, Tech Tea Set,
 Egg Waffle, Pael's Gene Bank, Mobile Construction Vehicle, Premium Large Fruit,
 Sierpinski Sponge, Nine Yin Manual, Good Watch, Monster, Mechanical Arm Base.
-Powers (5) ×2, Atrocity, Wild Hunt Tracking, Creation of Pillar, Hot Start.
+Powers (4) ×2, Atrocity, Creation of Pillar, Hot Start.
 Enchantments (1) Mobile Construction Vehicle.
 Ancients (1) God of DIY.

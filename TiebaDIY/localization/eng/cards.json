@@ -15,7 +15,7 @@
 	"TIEBA_DIY_CARD_TRANCE.title": "Trance",
 	"TIEBA_DIY_CARD_TRANCE.description": "When drawn, [gold]Transform[/gold] all of your Curses and Status cards except itself.",
 	"TIEBA_DIY_CARD_EIGHT_INCH_NAIL.title": "Eight-Inch Nail",
-	"TIEBA_DIY_CARD_EIGHT_INCH_NAIL.description": "Whenever you draw a card, add this card to your Hand.",
+	"TIEBA_DIY_CARD_EIGHT_INCH_NAIL.description": "Whenever this would be shuffled into your [gold]Draw Pile[/gold], place it on the top instead.",
 	"TIEBA_DIY_CARD_ORAL_FIBROSIS.title": "Oral Fibrosis",
 	"TIEBA_DIY_CARD_ORAL_FIBROSIS.description": "While this card is in your [gold]Hand[/gold], you cannot play cards that cost {EnergyThreshold:energyIcons()} or more.",
 	"TIEBA_DIY_CARD_IRON_WAVE_PRO.title": "Iron Wave Pro",

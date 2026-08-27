@@ -1,6 +1,5 @@
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -24,14 +23,15 @@ public sealed class EightInchNail()
     public override CardAssetProfile AssetProfile { get; } = new(
         PortraitPath: PortraitPath);
 
-    public override async Task AfterCardDrawn(
-        PlayerChoiceContext choiceContext,
-        CardModel card,
-        bool fromHandDraw)
+    public override void ModifyShuffleOrder(
+        Player player,
+        List<CardModel> cards,
+        bool isInitialShuffle)
     {
-        if (!ReferenceEquals(card.Owner, Owner) || Pile == null || Pile.Type == PileType.Hand)
-            return;
-
-        await CardPileCmd.Add(this, PileType.Hand, CardPilePosition.Top);
+        if (!isInitialShuffle && cards.Contains(this))
+        {
+            cards.Remove(this);
+            cards.Insert(0, this);
+        }
     }
 }
